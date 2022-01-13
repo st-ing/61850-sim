@@ -4,11 +4,9 @@
 
 **Source code:** https://github.com/st-ing/61850-sim
 
-**Supported architectures:** amd64, arm32v6, arm32v7, arm64v8, i386, ppc64le, riscv64, s390x
-
 # Supported tags and respective `Dockerfile` links
 
-- [`latest`, `0.1.0`](https://github.com/st-ing/61850-sim/blob/master/Dockerfile)
+- [`latest`, `0.1`](https://github.com/st-ing/61850-sim/blob/master/Dockerfile)
 
 # What is Fuzzy IEC61850 Simulator?
 
@@ -20,7 +18,7 @@ Simulation is meant to be run as a (docker) container, as it makes it underlying
 As an input, the simulation takes a model file that is in any of the [formats](https://en.wikipedia.org/wiki/Substation_Configuration_Language#Types_of_SCL_-) supported by [Substation Configuration Language (SCL)](https://en.wikipedia.org/wiki/Substation_Configuration_Language): ICD (*IED Capability Description*), CID(*Configured IED Description*) or IID(*Instantiated IED Description* ).
 Based on this model, a runtime is generated dynamically, and simulation is commenced.
 
-More information can be found at https://github.com/st-ing/61850-sim/README.md
+More information can be found at https://github.com/st-ing/61850-sim#readme
 
 # How to use this image
 

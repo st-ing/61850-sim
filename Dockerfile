@@ -1,6 +1,6 @@
 FROM alpine
 
-ARG VERSION=1.0
+ARG VERSION
 ARG BUILD_NUMBER
 ARG BUILD_DATE
 
@@ -11,7 +11,7 @@ LABEL org.opencontainers.image.version=$VERSION
 LABEL org.opencontainers.image.revision=$BUILD_NUMBER
 LABEL org.opencontainers.image.created=$BUILD_DATE
 LABEL org.opencontainers.image.vendor="sting GmbH"
-LABEL org.opencontainers.image.base.name="harbor.st-ing.net/library/61850-sim"
+LABEL org.opencontainers.image.base.name="stinging/61850-sim"
 
 RUN apk add linux-headers build-base openjdk8
 

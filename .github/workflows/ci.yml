@@ -11,29 +11,33 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and push docker images
 
+    env:
+      VERSION: 0.1
+
     steps:
     - name: Checking out repository
       uses: actions/checkout@v2
     
     - name: Build docker image
       run: |
-       docker build --pull --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') --build-arg BUILD_NUMBER=$GITHUB_RUN_NUMBER --tag stinging/61850-sim:$GITHUB_RUN_NUMBER .
+       docker build --pull --build-arg VERSION=$VERSION --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') --build-arg BUILD_NUMBER=$GITHUB_RUN_NUMBER --tag 61850-sim:$GITHUB_RUN_NUMBER .
     
     - name: Tag docker images
       run: |
-       docker tag stinging/61850-sim:$GITHUB_RUN_NUMBER stinging/61850-sim:$(date +%s)
-       docker tag stinging/61850-sim:$GITHUB_RUN_NUMBER stinging/61850-sim
-    
-    - name: List docker images
-      run: |
-       docker images
-    
+       docker tag 61850-sim:$GITHUB_RUN_NUMBER stinging/61850-sim
+       docker tag 61850-sim:$GITHUB_RUN_NUMBER stinging/61850-sim:$VERSION
+       docker tag 61850-sim:$GITHUB_RUN_NUMBER harbor.st-ing.net/library/61850-sim
+       docker tag 61850-sim:$GITHUB_RUN_NUMBER harbor.st-ing.net/library/61850-sim:$VERSION
+   
     - name: Login to DockerHub
       uses: docker/login-action@v1
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-    - name: Push docker images
+    - name: Push docker images to DockerHub
       run: |
        docker push stinging/61850-sim
+       docker push stinging/61850-sim:$VERSION
+
+    # TBD push to harbor.st-ing.net
