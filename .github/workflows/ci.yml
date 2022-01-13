@@ -14,10 +14,11 @@ jobs:
     steps:
     - name: Checking out repository
       uses: actions/checkout@v2
-    - name: Build the Docker image
-    - run: |
+    - name: Build docker image
+      run: |
        docker build --pull --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') --build-arg BUILD_NUMBER=$GITHUB_RUN_NUMBER --tag stinging/61850-sim:$GITHUB_RUN_NUMBER .
-    - run: |
+    - name: Tag docker images
+      run: |
        docker tag stinging/61850-sim:$GITHUB_RUN_NUMBER stinging/61850-sim:$(date +%s)
        docker tag stinging/61850-sim:$GITHUB_RUN_NUMBER stinging/61850-sim
     # docker login
