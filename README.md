@@ -39,8 +39,7 @@ The simulation (docker) image is automaticaly build and published to (docker) re
 docker pull stinging/61850-sim
 ```
 
-Backup/mirror repository is available under
-`harbor.st-ing.net/library/61850-sim` and you get it simply by:
+Backup/mirror repository is available under `harbor.st-ing.net/library/61850-sim` and you get it simply by:
 ```
 docker pull harbor.st-ing.net/library/61850-sim
 ```
@@ -77,7 +76,7 @@ In order to run the simulation use the following or similiar command:
 docker run \
     -p 102:102 \
     -v <path_to_scl_file>:/model.cid \
-    harbor.st-ing.net/library/61850-sim
+    stinging/61850-sim
 ```
 
 where *<path_to_scl_file>* is path to IED model in any of [ICD, CID, or IID](https://en.wikipedia.org/wiki/Substation_Configuration_Language#Types_of_SCL_-)  formats.
@@ -95,7 +94,7 @@ docker run -it --rm \
     -e LOG_MODELING=true \
     -e LOG_SIMULATION=true \
     -v $(pwd)/res/TEC.scd:/model.cid \
-    harbor.st-ing.net/library/61850-sim
+    stinging/61850-sim
 ```
 
 **Hitachi Energy MSM (Modular Switchgear Monitoring)**
@@ -109,7 +108,7 @@ docker run -it --rm \
     -e MMS_PORT=55555 \
     -e SIMULATION_FREQUENCY=100 \
     -v $(pwd)/res/MSM.scd:/model.cid \
-    harbor.st-ing.net/library/61850-sim
+    stinging/61850-sim
 ```
 
 **Schneider Electric PowerLogic ION7550**
@@ -122,7 +121,7 @@ docker run -it --rm \
     -e SIMULATION_FREQUENCY=1000 \
     -e LOG_MODELING=true \
     -v $(pwd)/res/ION.icd:/model.cid \
-    harbor.st-ing.net/library/61850-sim
+    stinging/61850-sim
 ```
 
 **Schneider Electric PowerLogic PM8000**
@@ -134,7 +133,7 @@ docker run -it --rm \
     -e SIMULATION_FREQUENCY=1 \
     -e LOG_SIMULATION=true \
     -v $(pwd)/res/PM.icd:/model.cid \
-    harbor.st-ing.net/library/61850-sim
+    stinging/61850-sim
 ```
 
 ### As a part of docker compose:
@@ -143,7 +142,7 @@ docker run -it --rm \
 
 ```
     iec61850-sim-node-03:
-      image: harbor.st-ing.net/library/61850-sim
+      image: stinging/61850-sim
       container_name: iec61850-sim-node-03
       tty: true
       restart: unless-stopped
@@ -159,6 +158,23 @@ docker run -it --rm \
           ipv4_address: 10.10.0.201
 ```
 
+## Demo servers
+
+- Schneider Electric PowerLogic PM8000 
+  
+  **server** fuzzy-61850-sim.sting.dev 
+  
+  **port** 1001
+
+  (*docker run --restart=unless-stopped -p 1001:102  -e SIMULATION_FREQUENCY=1 -e LOG_SIMULATION=true -v $(pwd)/res/PM.icd:/model.cid stinging/61850-sim*)
+
+- Schneider Electric PowerLogic ION7550
+
+  **server** fuzzy-61850-sim.sting.dev 
+  
+  **port** 1002
+
+  (*docker run --restart=unless-stopped -p 1001:102  -e SIMULATION_FREQUENCY=5 -v $(pwd)/res/ION.icd:/model.cid stinging/61850-sim*)
 ## Third-party components
 This code base uses **libIEC61850** library. More documentation can be found online at http://libiec61850.com.
 

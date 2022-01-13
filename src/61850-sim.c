@@ -122,7 +122,7 @@ int main(int argc, char** argv)
     // New IEC 61850 server instance
     iedServer = IedServer_createWithConfig(&iedModel, NULL, config);
     IedServerConfig_destroy(config);
-    IedServer_setServerIdentity(iedServer, "sting GmbH", "Fuzzy IEC61850 Simulator", "2.0");
+    IedServer_setServerIdentity(iedServer, "sting GmbH", "Fuzzy IEC61850 Simulator", "1.0");
     
     // Tracking connections
     IedServer_setConnectionIndicationHandler(iedServer, (IedConnectionIndicationHandler) connectionHandler, NULL);

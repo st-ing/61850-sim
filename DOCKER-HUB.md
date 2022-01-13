@@ -6,7 +6,7 @@
 
 # Supported tags and respective `Dockerfile` links
 
-- [`latest`, `0.1`](https://github.com/st-ing/61850-sim/blob/master/Dockerfile)
+- [`latest`, `1.0`](https://github.com/st-ing/61850-sim/blob/master/Dockerfile)
 
 # What is Fuzzy IEC61850 Simulator?
 
