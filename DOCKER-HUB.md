@@ -8,7 +8,7 @@
 
 # Supported tags and respective `Dockerfile` links
 
-- [`latest`, `0.1.0`](https://github.com/st-ing/61850-sim)
+- [`latest`, `0.1.0`](https://github.com/st-ing/61850-sim/blob/master/Dockerfile)
 
 # What is Fuzzy IEC61850 Simulator?
 
@@ -33,7 +33,7 @@ docker run \
     stinging/61850-sim
 ```
 
-where *<path_to_scl_file>* is path to IED model in any of [ICD, CID, or IID](https://en.wikipedia.org/wiki/Substation_Configuration_Language#Types_of_SCL_-)  formats.
+where *path_to_scl_file* is path to IED model in any of [ICD, CID, or IID](https://en.wikipedia.org/wiki/Substation_Configuration_Language#Types_of_SCL_-)  formats.
 
 This is the minimal use-case. For more complex use-cases check the *configuring* and *examples*.
 
