@@ -1,0 +1,2864 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<SCL xmlns="http://www.iec.ch/61850/2003/SCL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.iec.ch/61850/2003/SCL SCL.xsd">
+  <Private type="SchneiderElectric-SFT-EditTime">2014-04-07 14:51:22</Private>
+  <Private type="SchneiderElectric-SFT-Version">2.0.0</Private>
+  <Header id="PM8000 definition file" nameStructure="IEDName" revision="1" version="1"/>
+  <Communication>
+    <SubNetwork name="None" type="8-MMS">
+      <ConnectedAP apName="AP1" iedName="Tenli PM8000">
+        <Address>
+          <P type="IP">10.168.69.120</P>
+          <P type="IP-SUBNET">255.255.248.0</P>
+          <P type="IP-GATEWAY">10.168.64.1</P>
+        </Address>
+      </ConnectedAP>
+    </SubNetwork>
+  </Communication>
+  <IED configVersion="1.0" desc="Class 0,2S Energy and Power Quality Meter" manufacturer="Schneider Electric" name="TEMPLATE" type="PM8000">
+    <Services>
+      <DynAssociation/>
+      <GetDirectory/>
+      <GetDataObjectDefinition/>
+      <DataObjectDirectory/>
+      <GetDataSetValue/>
+      <DataSetDirectory/>
+      <ConfDataSet max="6" maxAttributes="50" modify="true"/>
+      <ReadWrite/>
+      <ConfReportControl max="24"/>
+      <ReportSettings bufTime="Dyn" cbName="Conf" datSet="Conf" intgPd="Dyn" optFields="Dyn" rptID="Dyn" trgOps="Dyn"/>
+      <ConfLNs fixLnInst="true" fixPrefix="true"/>
+    </Services>
+    <AccessPoint name="AP1">
+      <Server>
+        <Authentication/>
+        <LDevice inst="LD0">
+<!-- ======================================================================================
+					  DEVICE CHARACTERISTICS
+				======================================================================================= -->
+          <Private type="SchneiderElectric-SFT-IcdFileName">PM8000/SE_PM8000-Onb1-F01_E1V01.icd</Private>
+          <Private type="SchneiderElectric-SFT-IedVersion">360</Private>
+          <Private type="SchneiderElectric-SFT-IedName">PM8000</Private>
+          <Private type="SchneiderElectric-SFT-IedFamily">PM8000</Private>
+          <Private type="SchneiderElectric-SFT-IedAppli">PM8000</Private>
+<!-- ======================================================================================
+					  SYSTEM LOGICAL NODES
+					======================================================================================= -->
+          <LN0 desc="General" inst="" lnClass="LLN0" lnType="SE_LLN0_PM8000_V001">
+            <DataSet desc="Device Operational Status" name="STATUS">
+              <FCDA daName="stVal" doName="PhyHealth" fc="ST" ldInst="LD0" lnClass="LPHD" lnInst="1"/>
+              <FCDA daName="stVal" doName="Mod" fc="ST" ldInst="LD0" lnClass="LLN0"/>
+            </DataSet>
+            <DataSet desc="Default Measurements Dataset" name="MMXU">
+              <FCDA daName="mag" doName="TotW" fc="MX" ldInst="LD0" lnClass="MMXU" lnInst="1" prefix="M03_"/>
+              <FCDA daName="mag" doName="TotVAr" fc="MX" ldInst="LD0" lnClass="MMXU" lnInst="1" prefix="M03_"/>
+              <FCDA daName="mag" doName="TotVA" fc="MX" ldInst="LD0" lnClass="MMXU" lnInst="1" prefix="M03_"/>
+              <FCDA daName="mag" doName="TotPF" fc="MX" ldInst="LD0" lnClass="MMXU" lnInst="1" prefix="M03_"/>
+              <FCDA daName="mag" doName="Hz" fc="MX" ldInst="LD0" lnClass="MMXU" lnInst="1" prefix="M03_"/>
+              <FCDA daName="phsAB.cVal" doName="PPV" fc="MX" ldInst="LD0" lnClass="MMXU" lnInst="1" prefix="M03_"/>
+              <FCDA daName="phsBC.cVal" doName="PPV" fc="MX" ldInst="LD0" lnClass="MMXU" lnInst="1" prefix="M03_"/>
+              <FCDA daName="phsCA.cVal" doName="PPV" fc="MX" ldInst="LD0" lnClass="MMXU" lnInst="1" prefix="M03_"/>
+              <FCDA daName="phsA.cVal" doName="PhV" fc="MX" ldInst="LD0" lnClass="MMXU" lnInst="1" prefix="M03_"/>
+              <FCDA daName="phsB.cVal" doName="PhV" fc="MX" ldInst="LD0" lnClass="MMXU" lnInst="1" prefix="M03_"/>
+              <FCDA daName="phsC.cVal" doName="PhV" fc="MX" ldInst="LD0" lnClass="MMXU" lnInst="1" prefix="M03_"/>
+              <FCDA daName="phsA.cVal" doName="A" fc="MX" ldInst="LD0" lnClass="MMXU" lnInst="1" prefix="M03_"/>
+              <FCDA daName="phsB.cVal" doName="A" fc="MX" ldInst="LD0" lnClass="MMXU" lnInst="1" prefix="M03_"/>
+              <FCDA daName="phsC.cVal" doName="A" fc="MX" ldInst="LD0" lnClass="MMXU" lnInst="1" prefix="M03_"/>
+              <FCDA daName="neut.cVal" doName="A" fc="MX" ldInst="LD0" lnClass="MMXU" lnInst="1" prefix="M03_"/>
+              <FCDA daName="net.cVal" doName="A" fc="MX" ldInst="LD0" lnClass="MMXU" lnInst="1" prefix="M03_"/>
+              <FCDA daName="phsA.cVal" doName="W" fc="MX" ldInst="LD0" lnClass="MMXU" lnInst="1" prefix="M03_"/>
+              <FCDA daName="phsB.cVal" doName="W" fc="MX" ldInst="LD0" lnClass="MMXU" lnInst="1" prefix="M03_"/>
+              <FCDA daName="phsC.cVal" doName="W" fc="MX" ldInst="LD0" lnClass="MMXU" lnInst="1" prefix="M03_"/>
+              <FCDA daName="phsC.cVal" doName="VAr" fc="MX" ldInst="LD0" lnClass="MMXU" lnInst="1" prefix="M03_"/>
+              <FCDA daName="phsB.cVal" doName="VAr" fc="MX" ldInst="LD0" lnClass="MMXU" lnInst="1" prefix="M03_"/>
+              <FCDA daName="phsA.cVal" doName="VAr" fc="MX" ldInst="LD0" lnClass="MMXU" lnInst="1" prefix="M03_"/>
+              <FCDA daName="phsA.cVal" doName="VA" fc="MX" ldInst="LD0" lnClass="MMXU" lnInst="1" prefix="M03_"/>
+              <FCDA daName="phsB.cVal" doName="VA" fc="MX" ldInst="LD0" lnClass="MMXU" lnInst="1" prefix="M03_"/>
+              <FCDA daName="phsC.cVal" doName="VA" fc="MX" ldInst="LD0" lnClass="MMXU" lnInst="1" prefix="M03_"/>
+              <FCDA daName="phsA.cVal" doName="PF" fc="MX" ldInst="LD0" lnClass="MMXU" lnInst="1" prefix="M03_"/>
+              <FCDA daName="phsB.cVal" doName="PF" fc="MX" ldInst="LD0" lnClass="MMXU" lnInst="1" prefix="M03_"/>
+              <FCDA daName="phsC.cVal" doName="PF" fc="MX" ldInst="LD0" lnClass="MMXU" lnInst="1" prefix="M03_"/>
+            </DataSet>
+            <DataSet desc="Default Metering Dataset" name="MMTR">
+              <FCDA daName="actVal" doName="TotVAh" fc="ST" ldInst="LD0" lnClass="MMTR" lnInst="1"/>
+              <FCDA daName="actVal" doName="TotWh" fc="ST" ldInst="LD0" lnClass="MMTR" lnInst="1"/>
+              <FCDA daName="actVal" doName="TotVArh" fc="ST" ldInst="LD0" lnClass="MMTR" lnInst="1"/>
+              <FCDA daName="actVal" doName="SupWh" fc="ST" ldInst="LD0" lnClass="MMTR" lnInst="1"/>
+              <FCDA daName="actVal" doName="SupVArh" fc="ST" ldInst="LD0" lnClass="MMTR" lnInst="1"/>
+              <FCDA daName="actVal" doName="DmdWh" fc="ST" ldInst="LD0" lnClass="MMTR" lnInst="1"/>
+              <FCDA daName="actVal" doName="DmdVArh" fc="ST" ldInst="LD0" lnClass="MMTR" lnInst="1"/>
+            </DataSet>
+            <DataSet desc="Default Hardware I/O Dataset" name="GGIO">
+              <FCDA daName="stVal" doName="SPCSO1" fc="ST" ldInst="LD0" lnClass="GGIO" lnInst="1" prefix="ONB1_"/>
+              <FCDA daName="stVal" doName="Ind1" fc="ST" ldInst="LD0" lnClass="GGIO" lnInst="1" prefix="ONB1_"/>
+              <FCDA daName="stVal" doName="Ind2" fc="ST" ldInst="LD0" lnClass="GGIO" lnInst="1" prefix="ONB1_"/>
+              <FCDA daName="stVal" doName="Ind3" fc="ST" ldInst="LD0" lnClass="GGIO" lnInst="1" prefix="ONB1_"/>
+            </DataSet>
+            <DataSet desc="Default Power Quality Dataset" name="PQ">
+              <FCDA daName="instMag" doName="Hz" fc="MX" ldInst="LD0" lnClass="MHAI" lnInst="1"/>
+              <FCDA daName="phsA.cVal" doName="HKf" fc="MX" ldInst="LD0" lnClass="MHAI" lnInst="1"/>
+              <FCDA daName="phsB.cVal" doName="HKf" fc="MX" ldInst="LD0" lnClass="MHAI" lnInst="1"/>
+              <FCDA daName="phsC.cVal" doName="HKf" fc="MX" ldInst="LD0" lnClass="MHAI" lnInst="1"/>
+              <FCDA daName="neut.cVal" doName="HKf" fc="MX" ldInst="LD0" lnClass="MHAI" lnInst="1"/>
+              <FCDA daName="net.cVal" doName="HKf" fc="MX" ldInst="LD0" lnClass="MHAI" lnInst="1"/>
+              <FCDA daName="phsA.cVal" doName="ThdA" fc="MX" ldInst="LD0" lnClass="MHAI" lnInst="1"/>
+              <FCDA daName="phsB.cVal" doName="ThdA" fc="MX" ldInst="LD0" lnClass="MHAI" lnInst="1"/>
+              <FCDA daName="phsC.cVal" doName="ThdA" fc="MX" ldInst="LD0" lnClass="MHAI" lnInst="1"/>
+              <FCDA daName="neut.cVal" doName="ThdA" fc="MX" ldInst="LD0" lnClass="MHAI" lnInst="1"/>
+              <FCDA daName="net.cVal" doName="ThdA" fc="MX" ldInst="LD0" lnClass="MHAI" lnInst="1"/>
+              <FCDA daName="phsA.cVal" doName="ThdOddA" fc="MX" ldInst="LD0" lnClass="MHAI" lnInst="1"/>
+              <FCDA daName="phsB.cVal" doName="ThdOddA" fc="MX" ldInst="LD0" lnClass="MHAI" lnInst="1"/>
+              <FCDA daName="phsC.cVal" doName="ThdOddA" fc="MX" ldInst="LD0" lnClass="MHAI" lnInst="1"/>
+              <FCDA daName="neut.cVal" doName="ThdOddA" fc="MX" ldInst="LD0" lnClass="MHAI" lnInst="1"/>
+              <FCDA daName="net.cVal" doName="ThdOddA" fc="MX" ldInst="LD0" lnClass="MHAI" lnInst="1"/>
+              <FCDA daName="phsA.cVal" doName="ThdEvnA" fc="MX" ldInst="LD0" lnClass="MHAI" lnInst="1"/>
+              <FCDA daName="phsB.cVal" doName="ThdEvnA" fc="MX" ldInst="LD0" lnClass="MHAI" lnInst="1"/>
+              <FCDA daName="phsC.cVal" doName="ThdEvnA" fc="MX" ldInst="LD0" lnClass="MHAI" lnInst="1"/>
+              <FCDA daName="neut.cVal" doName="ThdEvnA" fc="MX" ldInst="LD0" lnClass="MHAI" lnInst="1"/>
+              <FCDA daName="net.cVal" doName="ThdEvnA" fc="MX" ldInst="LD0" lnClass="MHAI" lnInst="1"/>
+              <FCDA daName="phsA.cVal" doName="HCfA" fc="MX" ldInst="LD0" lnClass="MHAI" lnInst="1"/>
+              <FCDA daName="phsB.cVal" doName="HCfA" fc="MX" ldInst="LD0" lnClass="MHAI" lnInst="1"/>
+              <FCDA daName="phsC.cVal" doName="HCfA" fc="MX" ldInst="LD0" lnClass="MHAI" lnInst="1"/>
+              <FCDA daName="neut.cVal" doName="HCfA" fc="MX" ldInst="LD0" lnClass="MHAI" lnInst="1"/>
+              <FCDA daName="net.cVal" doName="HCfA" fc="MX" ldInst="LD0" lnClass="MHAI" lnInst="1"/>
+              <FCDA daName="phsAB.cVal" doName="ThdPPV" fc="MX" ldInst="LD0" lnClass="MHAI" lnInst="1"/>
+              <FCDA daName="phsBC.cVal" doName="ThdPPV" fc="MX" ldInst="LD0" lnClass="MHAI" lnInst="1"/>
+              <FCDA daName="phsCA.cVal" doName="ThdPPV" fc="MX" ldInst="LD0" lnClass="MHAI" lnInst="1"/>
+              <FCDA daName="phsAB.cVal" doName="ThdOddPPV" fc="MX" ldInst="LD0" lnClass="MHAI" lnInst="1"/>
+              <FCDA daName="phsBC.cVal" doName="ThdOddPPV" fc="MX" ldInst="LD0" lnClass="MHAI" lnInst="1"/>
+              <FCDA daName="phsCA.cVal" doName="ThdOddPPV" fc="MX" ldInst="LD0" lnClass="MHAI" lnInst="1"/>
+              <FCDA daName="phsAB.cVal" doName="ThdEvnPPV" fc="MX" ldInst="LD0" lnClass="MHAI" lnInst="1"/>
+              <FCDA daName="phsBC.cVal" doName="ThdEvnPPV" fc="MX" ldInst="LD0" lnClass="MHAI" lnInst="1"/>
+              <FCDA daName="phsCA.cVal" doName="ThdEvnPPV" fc="MX" ldInst="LD0" lnClass="MHAI" lnInst="1"/>
+              <FCDA daName="c1.cVal" doName="SeqA" fc="MX" ldInst="LD0" lnClass="MSQI" lnInst="1"/>
+              <FCDA daName="c2.cVal" doName="SeqA" fc="MX" ldInst="LD0" lnClass="MSQI" lnInst="1"/>
+              <FCDA daName="c3.cVal" doName="SeqA" fc="MX" ldInst="LD0" lnClass="MSQI" lnInst="1"/>
+              <FCDA daName="c1.cVal" doName="SeqV" fc="MX" ldInst="LD0" lnClass="MSQI" lnInst="1"/>
+              <FCDA daName="c2.cVal" doName="SeqV" fc="MX" ldInst="LD0" lnClass="MSQI" lnInst="1"/>
+              <FCDA daName="c3.cVal" doName="SeqV" fc="MX" ldInst="LD0" lnClass="MSQI" lnInst="1"/>
+              <FCDA daName="mag" doName="AvVA" fc="MX" ldInst="LD0" lnClass="MSTA" lnInst="1"/>
+              <FCDA daName="mag" doName="MaxVA" fc="MX" ldInst="LD0" lnClass="MSTA" lnInst="1"/>
+              <FCDA daName="mag" doName="MinVA" fc="MX" ldInst="LD0" lnClass="MSTA" lnInst="1"/>
+              <FCDA daName="mag" doName="AvW" fc="MX" ldInst="LD0" lnClass="MSTA" lnInst="1"/>
+              <FCDA daName="mag" doName="MaxW" fc="MX" ldInst="LD0" lnClass="MSTA" lnInst="1"/>
+              <FCDA daName="mag" doName="MinW" fc="MX" ldInst="LD0" lnClass="MSTA" lnInst="1"/>
+              <FCDA daName="mag" doName="AvVAr" fc="MX" ldInst="LD0" lnClass="MSTA" lnInst="1"/>
+              <FCDA daName="mag" doName="MaxVAr" fc="MX" ldInst="LD0" lnClass="MSTA" lnInst="1"/>
+              <FCDA daName="mag" doName="MinVAr" fc="MX" ldInst="LD0" lnClass="MSTA" lnInst="1"/>
+            </DataSet>
+            <DataSet desc="Default Custom GGIO DataSet" name="CUSTOMIO">
+              <FCDA daName="mag" doName="AnIn1" fc="MX" ldInst="LD0" lnClass="GGIO" lnInst="6" prefix="CUS1_"/>
+              <FCDA daName="mag" doName="AnIn2" fc="MX" ldInst="LD0" lnClass="GGIO" lnInst="6" prefix="CUS1_"/>
+              <FCDA daName="mag" doName="AnIn3" fc="MX" ldInst="LD0" lnClass="GGIO" lnInst="6" prefix="CUS1_"/>
+              <FCDA daName="mag" doName="AnIn4" fc="MX" ldInst="LD0" lnClass="GGIO" lnInst="6" prefix="CUS1_"/>
+              <FCDA daName="mag" doName="AnIn5" fc="MX" ldInst="LD0" lnClass="GGIO" lnInst="6" prefix="CUS1_"/>
+              <FCDA daName="mag" doName="AnIn6" fc="MX" ldInst="LD0" lnClass="GGIO" lnInst="6" prefix="CUS1_"/>
+              <FCDA daName="mag" doName="AnIn7" fc="MX" ldInst="LD0" lnClass="GGIO" lnInst="6" prefix="CUS1_"/>
+              <FCDA daName="mag" doName="AnIn8" fc="MX" ldInst="LD0" lnClass="GGIO" lnInst="6" prefix="CUS1_"/>
+              <FCDA daName="mag" doName="AnIn9" fc="MX" ldInst="LD0" lnClass="GGIO" lnInst="6" prefix="CUS1_"/>
+              <FCDA daName="mag" doName="AnIn10" fc="MX" ldInst="LD0" lnClass="GGIO" lnInst="6" prefix="CUS1_"/>
+              <FCDA daName="mag" doName="AnIn11" fc="MX" ldInst="LD0" lnClass="GGIO" lnInst="6" prefix="CUS1_"/>
+              <FCDA daName="mag" doName="AnIn12" fc="MX" ldInst="LD0" lnClass="GGIO" lnInst="6" prefix="CUS1_"/>
+              <FCDA daName="mag" doName="AnIn13" fc="MX" ldInst="LD0" lnClass="GGIO" lnInst="6" prefix="CUS1_"/>
+              <FCDA daName="mag" doName="AnIn14" fc="MX" ldInst="LD0" lnClass="GGIO" lnInst="6" prefix="CUS1_"/>
+              <FCDA daName="mag" doName="AnIn15" fc="MX" ldInst="LD0" lnClass="GGIO" lnInst="6" prefix="CUS1_"/>
+              <FCDA daName="mag" doName="AnIn16" fc="MX" ldInst="LD0" lnClass="GGIO" lnInst="6" prefix="CUS1_"/>
+              <FCDA daName="stVal" doName="Ind1" fc="ST" ldInst="LD0" lnClass="GGIO" lnInst="7" prefix="CUS2_"/>
+              <FCDA daName="stVal" doName="Ind2" fc="ST" ldInst="LD0" lnClass="GGIO" lnInst="7" prefix="CUS2_"/>
+              <FCDA daName="stVal" doName="Ind3" fc="ST" ldInst="LD0" lnClass="GGIO" lnInst="7" prefix="CUS2_"/>
+              <FCDA daName="stVal" doName="Ind4" fc="ST" ldInst="LD0" lnClass="GGIO" lnInst="7" prefix="CUS2_"/>
+              <FCDA daName="stVal" doName="Ind5" fc="ST" ldInst="LD0" lnClass="GGIO" lnInst="7" prefix="CUS2_"/>
+              <FCDA daName="stVal" doName="Ind6" fc="ST" ldInst="LD0" lnClass="GGIO" lnInst="7" prefix="CUS2_"/>
+              <FCDA daName="stVal" doName="Ind7" fc="ST" ldInst="LD0" lnClass="GGIO" lnInst="7" prefix="CUS2_"/>
+              <FCDA daName="stVal" doName="Ind8" fc="ST" ldInst="LD0" lnClass="GGIO" lnInst="7" prefix="CUS2_"/>
+              <FCDA daName="stVal" doName="Ind9" fc="ST" ldInst="LD0" lnClass="GGIO" lnInst="7" prefix="CUS2_"/>
+              <FCDA daName="stVal" doName="Ind10" fc="ST" ldInst="LD0" lnClass="GGIO" lnInst="7" prefix="CUS2_"/>
+              <FCDA daName="stVal" doName="Ind11" fc="ST" ldInst="LD0" lnClass="GGIO" lnInst="7" prefix="CUS2_"/>
+              <FCDA daName="stVal" doName="Ind12" fc="ST" ldInst="LD0" lnClass="GGIO" lnInst="7" prefix="CUS2_"/>
+              <FCDA daName="stVal" doName="Ind13" fc="ST" ldInst="LD0" lnClass="GGIO" lnInst="7" prefix="CUS2_"/>
+              <FCDA daName="stVal" doName="Ind14" fc="ST" ldInst="LD0" lnClass="GGIO" lnInst="7" prefix="CUS2_"/>
+              <FCDA daName="stVal" doName="Ind15" fc="ST" ldInst="LD0" lnClass="GGIO" lnInst="7" prefix="CUS2_"/>
+              <FCDA daName="stVal" doName="Ind16" fc="ST" ldInst="LD0" lnClass="GGIO" lnInst="7" prefix="CUS2_"/>
+            </DataSet>
+            <ReportControl bufTime="1000" buffered="false" confRev="1" datSet="STATUS" desc="Unbuffered Device Status Report" intgPd="0" name="urcbSTATUS1" rptID="urcbSTATUS1">
+              <TrgOps dchg="true" dupd="false" period="true" qchg="true"/>
+              <OptFields configRef="true" dataRef="false" dataSet="true" reasonCode="true" seqNum="true" timeStamp="true"/>
+            </ReportControl>
+            <ReportControl bufTime="1000" buffered="false" confRev="1" datSet="STATUS" desc="Unbuffered Device Status Report" intgPd="0" name="urcbSTATUS2" rptID="urcbSTATUS2">
+              <TrgOps dchg="true" dupd="false" period="true" qchg="true"/>
+              <OptFields configRef="true" dataRef="false" dataSet="true" reasonCode="true" seqNum="true" timeStamp="true"/>
+            </ReportControl>
+            <ReportControl bufTime="1000" buffered="false" confRev="1" datSet="STATUS" desc="Unbuffered Device Status Report" intgPd="0" name="urcbSTATUS3" rptID="urcbSTATUS3">
+              <TrgOps dchg="true" dupd="false" period="true" qchg="true"/>
+              <OptFields configRef="true" dataRef="false" dataSet="true" reasonCode="true" seqNum="true" timeStamp="true"/>
+            </ReportControl>
+            <ReportControl bufTime="1000" buffered="false" confRev="1" datSet="STATUS" desc="Unbuffered Device Status Report" intgPd="0" name="urcbSTATUS4" rptID="urcbSTATUS4">
+              <TrgOps dchg="true" dupd="false" period="true" qchg="true"/>
+              <OptFields configRef="true" dataRef="false" dataSet="true" reasonCode="true" seqNum="true" timeStamp="true"/>
+            </ReportControl>
+            <ReportControl bufTime="1000" buffered="false" confRev="1" datSet="MMXU" desc="Unbuffered Measurements Report" intgPd="0" name="urcbMMXU1" rptID="urcbMMXU1">
+              <TrgOps dchg="true" dupd="false" period="true" qchg="true"/>
+              <OptFields configRef="true" dataRef="false" dataSet="true" reasonCode="true" seqNum="true" timeStamp="true"/>
+            </ReportControl>
+            <ReportControl bufTime="1000" buffered="false" confRev="1" datSet="MMXU" desc="Unbuffered Measurements Report" intgPd="0" name="urcbMMXU2" rptID="urcbMMXU2">
+              <TrgOps dchg="true" dupd="false" period="true" qchg="true"/>
+              <OptFields configRef="true" dataRef="false" dataSet="true" reasonCode="true" seqNum="true" timeStamp="true"/>
+            </ReportControl>
+            <ReportControl bufTime="1000" buffered="false" confRev="1" datSet="MMXU" desc="Unbuffered Measurements Report" intgPd="0" name="urcbMMXU3" rptID="urcbMMXU3">
+              <TrgOps dchg="true" dupd="false" period="true" qchg="true"/>
+              <OptFields configRef="true" dataRef="false" dataSet="true" reasonCode="true" seqNum="true" timeStamp="true"/>
+            </ReportControl>
+            <ReportControl bufTime="1000" buffered="false" confRev="1" datSet="MMXU" desc="Unbuffered Measurements Report" intgPd="0" name="urcbMMXU4" rptID="urcbMMXU4">
+              <TrgOps dchg="true" dupd="false" period="true" qchg="true"/>
+              <OptFields configRef="true" dataRef="false" dataSet="true" reasonCode="true" seqNum="true" timeStamp="true"/>
+            </ReportControl>
+            <ReportControl bufTime="1000" buffered="false" confRev="1" datSet="MMTR" desc="Unbuffered Energy Report" intgPd="0" name="urcbMMTR1" rptID="urcbMMTR1">
+              <TrgOps dchg="true" dupd="false" period="true" qchg="true"/>
+              <OptFields configRef="true" dataRef="false" dataSet="true" reasonCode="true" seqNum="true" timeStamp="true"/>
+            </ReportControl>
+            <ReportControl bufTime="1000" buffered="false" confRev="1" datSet="MMTR" desc="Unbuffered Energy Report" intgPd="0" name="urcbMMTR2" rptID="urcbMMTR2">
+              <TrgOps dchg="true" dupd="false" period="true" qchg="true"/>
+              <OptFields configRef="true" dataRef="false" dataSet="true" reasonCode="true" seqNum="true" timeStamp="true"/>
+            </ReportControl>
+            <ReportControl bufTime="1000" buffered="false" confRev="1" datSet="MMTR" desc="Unbuffered Energy Report" intgPd="0" name="urcbMMTR3" rptID="urcbMMTR3">
+              <TrgOps dchg="true" dupd="false" period="true" qchg="true"/>
+              <OptFields configRef="true" dataRef="false" dataSet="true" reasonCode="true" seqNum="true" timeStamp="true"/>
+            </ReportControl>
+            <ReportControl bufTime="1000" buffered="false" confRev="1" datSet="MMTR" desc="Unbuffered Energy Report" intgPd="0" name="urcbMMTR4" rptID="urcbMMTR4">
+              <TrgOps dchg="true" dupd="false" period="true" qchg="true"/>
+              <OptFields configRef="true" dataRef="false" dataSet="true" reasonCode="true" seqNum="true" timeStamp="true"/>
+            </ReportControl>
+            <ReportControl bufTime="1000" buffered="false" confRev="1" datSet="PQ" desc="Unbuffered Power Quality Report" intgPd="0" name="urcbPQ1" rptID="urcbPQ1">
+              <TrgOps dchg="true" dupd="false" period="true" qchg="true"/>
+              <OptFields configRef="true" dataRef="false" dataSet="true" reasonCode="true" seqNum="true" timeStamp="true"/>
+            </ReportControl>
+            <ReportControl bufTime="1000" buffered="false" confRev="1" datSet="PQ" desc="Unbuffered Power Quality Report" intgPd="0" name="urcbPQ2" rptID="urcbPQ2">
+              <TrgOps dchg="true" dupd="false" period="true" qchg="true"/>
+              <OptFields configRef="true" dataRef="false" dataSet="true" reasonCode="true" seqNum="true" timeStamp="true"/>
+            </ReportControl>
+            <ReportControl bufTime="1000" buffered="false" confRev="1" datSet="PQ" desc="Unbuffered Power Quality Report" intgPd="0" name="urcbPQ3" rptID="urcbPQ3">
+              <TrgOps dchg="true" dupd="false" period="true" qchg="true"/>
+              <OptFields configRef="true" dataRef="false" dataSet="true" reasonCode="true" seqNum="true" timeStamp="true"/>
+            </ReportControl>
+            <ReportControl bufTime="1000" buffered="false" confRev="1" datSet="PQ" desc="Unbuffered Power Quality Report" intgPd="0" name="urcbPQ4" rptID="urcbPQ4">
+              <TrgOps dchg="true" dupd="false" period="true" qchg="true"/>
+              <OptFields configRef="true" dataRef="false" dataSet="true" reasonCode="true" seqNum="true" timeStamp="true"/>
+            </ReportControl>
+            <ReportControl bufTime="1000" buffered="false" confRev="1" datSet="CUSTOMIO" desc="Unbuffered Custom GGIO Report" intgPd="0" name="urcbCUSTOMIO1" rptID="urcbCUSTOMIO1">
+              <TrgOps dchg="true" dupd="false" period="true" qchg="true"/>
+              <OptFields configRef="true" dataRef="false" dataSet="true" reasonCode="true" seqNum="true" timeStamp="true"/>
+            </ReportControl>
+            <ReportControl bufTime="1000" buffered="false" confRev="1" datSet="CUSTOMIO" desc="Unbuffered Custom GGIO Report" intgPd="0" name="urcbCUSTOMIO2" rptID="urcbCUSTOMIO2">
+              <TrgOps dchg="true" dupd="false" period="true" qchg="true"/>
+              <OptFields configRef="true" dataRef="false" dataSet="true" reasonCode="true" seqNum="true" timeStamp="true"/>
+            </ReportControl>
+            <ReportControl bufTime="1000" buffered="false" confRev="1" datSet="CUSTOMIO" desc="Unbuffered Custom GGIO Report" intgPd="0" name="urcbCUSTOMIO3" rptID="urcbCUSTOMIO3">
+              <TrgOps dchg="true" dupd="false" period="true" qchg="true"/>
+              <OptFields configRef="true" dataRef="false" dataSet="true" reasonCode="true" seqNum="true" timeStamp="true"/>
+            </ReportControl>
+            <ReportControl bufTime="1000" buffered="false" confRev="1" datSet="CUSTOMIO" desc="Unbuffered Custom GGIO Report" intgPd="0" name="urcbCUSTOMIO4" rptID="urcbCUSTOMIO4">
+              <TrgOps dchg="true" dupd="false" period="true" qchg="true"/>
+              <OptFields configRef="true" dataRef="false" dataSet="true" reasonCode="true" seqNum="true" timeStamp="true"/>
+            </ReportControl>
+            <ReportControl bufTime="1000" buffered="true" confRev="1" datSet="GGIO" desc="Buffered Hardware I/O Report" intgPd="0" name="brcbGGIO1" rptID="brcbGGIO1">
+              <TrgOps dchg="true" dupd="false" period="true" qchg="true"/>
+              <OptFields configRef="true" dataRef="false" dataSet="true" entryID="true" reasonCode="true" seqNum="true" timeStamp="true"/>
+            </ReportControl>
+            <ReportControl bufTime="1000" buffered="true" confRev="1" datSet="GGIO" desc="Buffered Hardware I/O Report" intgPd="0" name="brcbGGIO2" rptID="brcbGGIO2">
+              <TrgOps dchg="true" dupd="false" period="true" qchg="true"/>
+              <OptFields configRef="true" dataRef="false" dataSet="true" entryID="true" reasonCode="true" seqNum="true" timeStamp="true"/>
+            </ReportControl>
+            <ReportControl bufTime="1000" buffered="true" confRev="1" datSet="GGIO" desc="Buffered Hardware I/O Report" intgPd="0" name="brcbGGIO3" rptID="brcbGGIO3">
+              <TrgOps dchg="true" dupd="false" period="true" qchg="true"/>
+              <OptFields configRef="true" dataRef="false" dataSet="true" entryID="true" reasonCode="true" seqNum="true" timeStamp="true"/>
+            </ReportControl>
+            <ReportControl bufTime="1000" buffered="true" confRev="1" datSet="GGIO" desc="Buffered Hardware I/O Report" intgPd="0" name="brcbGGIO4" rptID="brcbGGIO4">
+              <TrgOps dchg="true" dupd="false" period="true" qchg="true"/>
+              <OptFields configRef="true" dataRef="false" dataSet="true" entryID="true" reasonCode="true" seqNum="true" timeStamp="true"/>
+            </ReportControl>
+            <DOI name="Mod">
+              <DAI name="d">
+                <Val>Meter's Operational Status</Val>
+              </DAI>
+            </DOI>
+            <DOI name="Beh">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="Health">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+          </LN0>
+          <LN inst="1" lnClass="LPHD" lnType="SE_LPHD_PM8000_V001">
+            <DOI name="Proxy">
+              <DAI name="stVal">
+                <Val>false</Val>
+              </DAI>
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="PhyNam">
+              <DAI name="location">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="PhyHealth">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+          </LN>
+          <LN inst="1" lnClass="GGIO" lnType="SE_GGIOONB1_PM8000_V001" prefix="ONB1_">
+            <DOI name="Mod">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="Beh">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="Health">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="SPCSO1">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="Ind1">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="Ind2">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="Ind3">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+          </LN>
+          <LN inst="6" lnClass="GGIO" lnType="SE_GGIOCUS1_PM8000_V001" prefix="CUS1_">
+            <DOI name="Mod">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="Beh">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="Health">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="AnIn1">
+              <DAI desc="Unit: 0.1" name="db">
+                <Val>10</Val>
+              </DAI>
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="AnIn2">
+              <DAI desc="Unit: 0.1" name="db">
+                <Val>10</Val>
+              </DAI>
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="AnIn3">
+              <DAI desc="Unit: 0.1" name="db">
+                <Val>10</Val>
+              </DAI>
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="AnIn4">
+              <DAI desc="Unit: 0.1" name="db">
+                <Val>10</Val>
+              </DAI>
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="AnIn5">
+              <DAI desc="Unit: 0.1" name="db">
+                <Val>10</Val>
+              </DAI>
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="AnIn6">
+              <DAI desc="Unit: 0.1" name="db">
+                <Val>10</Val>
+              </DAI>
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="AnIn7">
+              <DAI desc="Unit: 0.1" name="db">
+                <Val>10</Val>
+              </DAI>
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="AnIn8">
+              <DAI desc="Unit: 0.1" name="db">
+                <Val>10</Val>
+              </DAI>
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="AnIn9">
+              <DAI desc="Unit: 0.1" name="db">
+                <Val>10</Val>
+              </DAI>
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="AnIn10">
+              <DAI desc="Unit: 0.1" name="db">
+                <Val>10</Val>
+              </DAI>
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="AnIn11">
+              <DAI desc="Unit: 0.1" name="db">
+                <Val>10</Val>
+              </DAI>
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="AnIn12">
+              <DAI desc="Unit: 0.1" name="db">
+                <Val>10</Val>
+              </DAI>
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="AnIn13">
+              <DAI desc="Unit: 0.1" name="db">
+                <Val>10</Val>
+              </DAI>
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="AnIn14">
+              <DAI desc="Unit: 0.1" name="db">
+                <Val>10</Val>
+              </DAI>
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="AnIn15">
+              <DAI desc="Unit: 0.1" name="db">
+                <Val>10</Val>
+              </DAI>
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="AnIn16">
+              <DAI desc="Unit: 0.1" name="db">
+                <Val>10</Val>
+              </DAI>
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+          </LN>
+          <LN inst="7" lnClass="GGIO" lnType="SE_GGIOCUS2_PM8000_V001" prefix="CUS2_">
+            <DOI name="Mod">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="Beh">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="Health">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="Ind1">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="Ind2">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="Ind3">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="Ind4">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="Ind5">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="Ind6">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="Ind7">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="Ind8">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="Ind9">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="Ind10">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="Ind11">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="Ind12">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="Ind13">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="Ind14">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="Ind15">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="Ind16">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+          </LN>
+          <LN inst="1" lnClass="MHAI" lnType="SE_MHAI_PM8000_V001">
+            <DOI name="Mod">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="Beh">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="Health">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="Hz">
+              <DAI desc="Unit: 0.001Hz" name="db">
+                <Val>100</Val>
+              </DAI>
+              <SDI name="units">
+                <DAI name="SIUnit">
+                  <Val>Hz</Val>
+                </DAI>
+                <DAI name="multiplier">
+                  <Val/>
+                </DAI>
+              </SDI>
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="HA">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="HPhV">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="HPPV">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="HKf">
+              <SDI name="phsA">
+                <DAI desc="Unit: 0.1%" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val/>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <SDI name="phsB">
+                <DAI desc="Unit: 0.1%" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val/>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <SDI name="phsC">
+                <DAI desc="Unit: 0.1%" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val/>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <SDI name="neut">
+                <DAI desc="Unit: 0.1%" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val/>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <SDI name="net">
+                <DAI desc="Unit: 0.1%" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val/>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="ThdA">
+              <SDI name="phsA">
+                <DAI desc="Unit: 0.1%" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val/>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <SDI name="phsB">
+                <DAI desc="Unit: 0.1%" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val/>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <SDI name="phsC">
+                <DAI desc="Unit: 0.1%" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val/>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <SDI name="neut">
+                <DAI desc="Unit: 0.1%" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val/>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <SDI name="net">
+                <DAI desc="Unit: 0.1%" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val/>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="ThdOddA">
+              <SDI name="phsA">
+                <DAI desc="Unit: 0.1%" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val/>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <SDI name="phsB">
+                <DAI desc="Unit: 0.1%" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val/>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <SDI name="phsC">
+                <DAI desc="Unit: 0.1%" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val/>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <SDI name="neut">
+                <DAI desc="Unit: 0.1%" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val/>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <SDI name="net">
+                <DAI desc="Unit: 0.1%" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val/>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="ThdEvnA">
+              <SDI name="phsA">
+                <DAI desc="Unit: 0.1%" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val/>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <SDI name="phsB">
+                <DAI desc="Unit: 0.1%" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val/>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <SDI name="phsC">
+                <DAI desc="Unit: 0.1%" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val/>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <SDI name="neut">
+                <DAI desc="Unit: 0.1%" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val/>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <SDI name="net">
+                <DAI desc="Unit: 0.1%" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val/>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="ThdPhV">
+              <SDI name="phsA">
+                <DAI desc="Unit: 0.1%" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val/>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <SDI name="phsB">
+                <DAI desc="Unit: 0.1%" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val/>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <SDI name="phsC">
+                <DAI desc="Unit: 0.1%" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val/>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="ThdOddPhV">
+              <SDI name="phsA">
+                <DAI desc="Unit: 0.1%" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val/>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <SDI name="phsB">
+                <DAI desc="Unit: 0.1%" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val/>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <SDI name="phsC">
+                <DAI desc="Unit: 0.1%" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val/>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="ThdEvnPhV">
+              <SDI name="phsA">
+                <DAI desc="Unit: 0.1%" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val/>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <SDI name="phsB">
+                <DAI desc="Unit: 0.1%" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val/>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <SDI name="phsC">
+                <DAI desc="Unit: 0.1%" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val/>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="HCfA">
+              <SDI name="phsA">
+                <DAI desc="Unit: 0.1%" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val/>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <SDI name="phsB">
+                <DAI desc="Unit: 0.1%" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val/>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <SDI name="phsC">
+                <DAI desc="Unit: 0.1%" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val/>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <SDI name="neut">
+                <DAI desc="Unit: 0.1%" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val/>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <SDI name="net">
+                <DAI desc="Unit: 0.1%" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val/>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="ThdPPV">
+              <SDI name="phsAB">
+                <DAI desc="Unit: 0.1%" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val/>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <SDI name="phsBC">
+                <DAI desc="Unit: 0.1%" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val/>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <SDI name="phsCA">
+                <DAI desc="Unit: 0.1%" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val/>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="ThdOddPPV">
+              <SDI name="phsAB">
+                <DAI desc="Unit: 0.1%" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val/>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <SDI name="phsBC">
+                <DAI desc="Unit: 0.1%" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val/>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <SDI name="phsCA">
+                <DAI desc="Unit: 0.1%" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val/>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="ThdEvnPPV">
+              <SDI name="phsAB">
+                <DAI desc="Unit: 0.1%" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val/>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <SDI name="phsBC">
+                <DAI desc="Unit: 0.1%" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val/>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <SDI name="phsCA">
+                <DAI desc="Unit: 0.1%" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val/>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+          </LN>
+          <LN inst="1" lnClass="MMTR" lnType="SE_MMTR_PM8000_V001">
+            <DOI name="Mod">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="Beh">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="Health">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="TotVAh">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+              <SDI name="units">
+                <DAI name="SIUnit">
+                  <Val>VAh</Val>
+                </DAI>
+                <DAI name="multiplier">
+                  <Val>k</Val>
+                </DAI>
+              </SDI>
+            </DOI>
+            <DOI name="TotWh">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+              <SDI name="units">
+                <DAI name="SIUnit">
+                  <Val>Wh</Val>
+                </DAI>
+                <DAI name="multiplier">
+                  <Val>k</Val>
+                </DAI>
+              </SDI>
+            </DOI>
+            <DOI name="TotVArh">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+              <SDI name="units">
+                <DAI name="SIUnit">
+                  <Val>VArh</Val>
+                </DAI>
+                <DAI name="multiplier">
+                  <Val>k</Val>
+                </DAI>
+              </SDI>
+            </DOI>
+            <DOI name="SupWh">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+              <SDI name="units">
+                <DAI name="SIUnit">
+                  <Val>Wh</Val>
+                </DAI>
+                <DAI name="multiplier">
+                  <Val>k</Val>
+                </DAI>
+              </SDI>
+            </DOI>
+            <DOI name="SupVArh">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+              <SDI name="units">
+                <DAI name="SIUnit">
+                  <Val>VArh</Val>
+                </DAI>
+                <DAI name="multiplier">
+                  <Val>k</Val>
+                </DAI>
+              </SDI>
+            </DOI>
+            <DOI name="DmdWh">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+              <SDI name="units">
+                <DAI name="SIUnit">
+                  <Val>Wh</Val>
+                </DAI>
+                <DAI name="multiplier">
+                  <Val>k</Val>
+                </DAI>
+              </SDI>
+            </DOI>
+            <DOI name="DmdVArh">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+              <SDI name="units">
+                <DAI name="SIUnit">
+                  <Val>VArh</Val>
+                </DAI>
+                <DAI name="multiplier">
+                  <Val>k</Val>
+                </DAI>
+              </SDI>
+            </DOI>
+          </LN>
+          <LN inst="1" lnClass="MMXU" lnType="SE_MMXU_PM8000_V001" prefix="M03_">
+            <DOI name="Mod">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="Beh">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="Health">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="TotW">
+              <DAI desc="Unit: 0.1kW" name="db">
+                <Val>10</Val>
+              </DAI>
+              <SDI name="units">
+                <DAI name="SIUnit">
+                  <Val>W</Val>
+                </DAI>
+                <DAI name="multiplier">
+                  <Val>k</Val>
+                </DAI>
+              </SDI>
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="TotVAr">
+              <DAI desc="Unit: 0.1kVAR" name="db">
+                <Val>10</Val>
+              </DAI>
+              <SDI name="units">
+                <DAI name="SIUnit">
+                  <Val>VAr</Val>
+                </DAI>
+                <DAI name="multiplier">
+                  <Val>k</Val>
+                </DAI>
+              </SDI>
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="TotVA">
+              <DAI desc="Unit: 0.1kVA" name="db">
+                <Val>10</Val>
+              </DAI>
+              <SDI name="units">
+                <DAI name="SIUnit">
+                  <Val>VA</Val>
+                </DAI>
+                <DAI name="multiplier">
+                  <Val>k</Val>
+                </DAI>
+              </SDI>
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="TotPF">
+              <DAI desc="Unit: 0.01" name="db">
+                <Val>10</Val>
+              </DAI>
+              <SDI name="units">
+                <DAI name="SIUnit">
+                  <Val/>
+                </DAI>
+                <DAI name="multiplier">
+                  <Val/>
+                </DAI>
+              </SDI>
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="Hz">
+              <DAI desc="Unit: 0.001Hz" name="db">
+                <Val>100</Val>
+              </DAI>
+              <SDI name="units">
+                <DAI name="SIUnit">
+                  <Val>Hz</Val>
+                </DAI>
+                <DAI name="multiplier">
+                  <Val/>
+                </DAI>
+              </SDI>
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="PPV">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+              <SDI name="phsAB">
+                <DAI desc="Unit: 1V" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val>V</Val>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <SDI name="phsBC">
+                <DAI desc="Unit: 1V" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val>V</Val>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <SDI name="phsCA">
+                <DAI desc="Unit: 1V" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val>V</Val>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+            </DOI>
+            <DOI name="PhV">
+              <SDI name="phsA">
+                <DAI desc="Unit: 1V" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val>V</Val>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <SDI name="phsB">
+                <DAI desc="Unit: 1V" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val>V</Val>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <SDI name="phsC">
+                <DAI desc="Unit: 1V" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val>V</Val>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="A">
+              <SDI name="phsA">
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+                <DAI desc="Unit: 0.1A" name="db">
+                  <Val>1</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val>A</Val>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+              </SDI>
+              <SDI name="phsB">
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+                <DAI desc="Unit: 0.1A" name="db">
+                  <Val>1</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val>A</Val>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+              </SDI>
+              <SDI name="phsC">
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+                <DAI desc="Unit: 0.1A" name="db">
+                  <Val>1</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val>A</Val>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+              </SDI>
+              <SDI name="neut">
+                <DAI desc="Unit: 0.1A" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val>A</Val>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <SDI name="net">
+                <DAI desc="Unit: 0.1A" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val>A</Val>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+              </SDI>
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="W">
+              <SDI name="phsA">
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+                <DAI desc="Unit: 0.1kW" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val>W</Val>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val>k</Val>
+                  </DAI>
+                </SDI>
+              </SDI>
+              <SDI name="phsB">
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+                <DAI desc="Unit: 0.1kW" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val>W</Val>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val>k</Val>
+                  </DAI>
+                </SDI>
+              </SDI>
+              <SDI name="phsC">
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+                <DAI desc="Unit: 0.1kW" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val>W</Val>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val>k</Val>
+                  </DAI>
+                </SDI>
+              </SDI>
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="VAr">
+              <SDI name="phsA">
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+                <DAI desc="Unit: 0.1kVAR" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val>VAr</Val>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val>k</Val>
+                  </DAI>
+                </SDI>
+              </SDI>
+              <SDI name="phsB">
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+                <DAI desc="Unit: 0.1kVAR" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val>VAr</Val>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val>k</Val>
+                  </DAI>
+                </SDI>
+              </SDI>
+              <SDI name="phsC">
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+                <DAI desc="Unit: 0.1kVAR" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val>VAr</Val>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val>k</Val>
+                  </DAI>
+                </SDI>
+              </SDI>
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="VA">
+              <SDI name="phsA">
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+                <DAI desc="Unit: 0.1kVA" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val>VA</Val>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val>k</Val>
+                  </DAI>
+                </SDI>
+              </SDI>
+              <SDI name="phsB">
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+                <DAI desc="Unit: 0.1kVA" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val>VA</Val>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val>k</Val>
+                  </DAI>
+                </SDI>
+              </SDI>
+              <SDI name="phsC">
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+                <DAI desc="Unit: 0.1kVA" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val>VA</Val>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val>k</Val>
+                  </DAI>
+                </SDI>
+              </SDI>
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="PF">
+              <SDI name="phsA">
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+                <DAI desc="Unit: 0.01" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val/>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+              </SDI>
+              <SDI name="phsB">
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+                <DAI desc="Unit: 0.01" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val/>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+              </SDI>
+              <SDI name="phsC">
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+                <DAI desc="Unit: 0.01" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val/>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+              </SDI>
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+          </LN>
+          <LN inst="1" lnClass="MSQI" lnType="SE_MSQI_PM8000_V001">
+            <DOI name="Mod">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="Beh">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="Health">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="SeqA">
+              <SDI name="c1">
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+                <DAI desc="Unit: 0.1A" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val>A</Val>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+              </SDI>
+              <SDI name="c2">
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+                <DAI desc="Unit: 0.1A" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val>A</Val>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+              </SDI>
+              <SDI name="c3">
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+                <DAI desc="Unit: 0.1A" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val>A</Val>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+              </SDI>
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="SeqV">
+              <SDI name="c1">
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+                <DAI desc="Unit: 1V" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val>V</Val>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+              </SDI>
+              <SDI name="c2">
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+                <DAI desc="Unit: 1V" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val>V</Val>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+              </SDI>
+              <SDI name="c3">
+                <DAI name="d">
+                  <Val>To be filled by the customer</Val>
+                </DAI>
+                <DAI desc="Unit: 1V" name="db">
+                  <Val>10</Val>
+                </DAI>
+                <SDI name="units">
+                  <DAI name="SIUnit">
+                    <Val>V</Val>
+                  </DAI>
+                  <DAI name="multiplier">
+                    <Val/>
+                  </DAI>
+                </SDI>
+              </SDI>
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+          </LN>
+          <LN inst="1" lnClass="MSTA" lnType="SE_MSTA_PM8000_V001">
+            <DOI name="Mod">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="Beh">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="Health">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="AvVA">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+              <DAI desc="Unit: 0.1kVA" name="db">
+                <Val>10</Val>
+              </DAI>
+              <SDI name="units">
+                <DAI name="SIUnit">
+                  <Val>VA</Val>
+                </DAI>
+                <DAI name="multiplier">
+                  <Val>k</Val>
+                </DAI>
+              </SDI>
+            </DOI>
+            <DOI name="MaxVA">
+              <DAI desc="Unit: 0.1kVA" name="db">
+                <Val>10</Val>
+              </DAI>
+              <SDI name="units">
+                <DAI name="SIUnit">
+                  <Val>VA</Val>
+                </DAI>
+                <DAI name="multiplier">
+                  <Val>k</Val>
+                </DAI>
+              </SDI>
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="MinVA">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+              <DAI desc="Unit: 0.1kVA" name="db">
+                <Val>10</Val>
+              </DAI>
+              <SDI name="units">
+                <DAI name="SIUnit">
+                  <Val>VA</Val>
+                </DAI>
+                <DAI name="multiplier">
+                  <Val>k</Val>
+                </DAI>
+              </SDI>
+            </DOI>
+            <DOI name="AvW">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+              <DAI desc="Unit: 0.1kW" name="db">
+                <Val>10</Val>
+              </DAI>
+              <SDI name="units">
+                <DAI name="SIUnit">
+                  <Val>W</Val>
+                </DAI>
+                <DAI name="multiplier">
+                  <Val>k</Val>
+                </DAI>
+              </SDI>
+            </DOI>
+            <DOI name="MaxW">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+              <DAI desc="Unit: 0.1kW" name="db">
+                <Val>10</Val>
+              </DAI>
+              <SDI name="units">
+                <DAI name="SIUnit">
+                  <Val>W</Val>
+                </DAI>
+                <DAI name="multiplier">
+                  <Val>k</Val>
+                </DAI>
+              </SDI>
+            </DOI>
+            <DOI name="MinW">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+              <DAI desc="Unit: 0.1kW" name="db">
+                <Val>10</Val>
+              </DAI>
+              <SDI name="units">
+                <DAI name="SIUnit">
+                  <Val>W</Val>
+                </DAI>
+                <DAI name="multiplier">
+                  <Val>k</Val>
+                </DAI>
+              </SDI>
+            </DOI>
+            <DOI name="AvVAr">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+              <DAI desc="Unit: 0.1kVAR" name="db">
+                <Val>10</Val>
+              </DAI>
+              <SDI name="units">
+                <DAI name="SIUnit">
+                  <Val>VAr</Val>
+                </DAI>
+                <DAI name="multiplier">
+                  <Val>k</Val>
+                </DAI>
+              </SDI>
+            </DOI>
+            <DOI name="MaxVAr">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+              <DAI desc="Unit: 0.1kVAR" name="db">
+                <Val>10</Val>
+              </DAI>
+              <SDI name="units">
+                <DAI name="SIUnit">
+                  <Val>VAr</Val>
+                </DAI>
+                <DAI name="multiplier">
+                  <Val>k</Val>
+                </DAI>
+              </SDI>
+            </DOI>
+            <DOI name="MinVAr">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+              <DAI desc="Unit: 0.1kVAR" name="db">
+                <Val>10</Val>
+              </DAI>
+              <SDI name="units">
+                <DAI name="SIUnit">
+                  <Val>VAr</Val>
+                </DAI>
+                <DAI name="multiplier">
+                  <Val>k</Val>
+                </DAI>
+              </SDI>
+            </DOI>
+          </LN>
+          <LN inst="1" lnClass="RDRE" lnType="SE_RDRE_PM8000_V001">
+            <DOI name="Mod">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="Beh">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="Health">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="RcdMade">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="FltNum">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+          </LN>
+          <LN inst="2" lnClass="RDRE" lnType="SE_RDRE_PM8000_V001">
+            <DOI name="Mod">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="Beh">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="Health">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="RcdMade">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="FltNum">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+          </LN>
+          <LN inst="3" lnClass="RDRE" lnType="SE_RDRE_PM8000_V001">
+            <DOI name="Mod">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="Beh">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="Health">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="RcdMade">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+            <DOI name="FltNum">
+              <DAI name="d">
+                <Val>To be filled by the customer</Val>
+              </DAI>
+            </DOI>
+          </LN>
+        </LDevice>
+      </Server>
+    </AccessPoint>
+  </IED>
+  <DataTypeTemplates>
+<!-- ======================================================================================
+    	  LOGICAL NODES
+	======================================================================================= -->
+    <LNodeType id="SE_GGIOCUS1_PM8000_V001" lnClass="GGIO">
+      <DO name="Mod" type="SE_Mod_PM8000_V001"/>
+      <DO name="Beh" type="SE_Beh_PM8000_V001"/>
+      <DO name="Health" type="SE_Health_PM8000_V001"/>
+      <DO name="NamPlt" type="SE_Lpl2_PM8000_V001"/>
+      <DO name="AnIn1" type="SE_Mv2_PM8000_V001"/>
+      <DO name="AnIn2" type="SE_Mv2_PM8000_V001"/>
+      <DO name="AnIn3" type="SE_Mv2_PM8000_V001"/>
+      <DO name="AnIn4" type="SE_Mv2_PM8000_V001"/>
+      <DO name="AnIn5" type="SE_Mv2_PM8000_V001"/>
+      <DO name="AnIn6" type="SE_Mv2_PM8000_V001"/>
+      <DO name="AnIn7" type="SE_Mv2_PM8000_V001"/>
+      <DO name="AnIn8" type="SE_Mv2_PM8000_V001"/>
+      <DO name="AnIn9" type="SE_Mv2_PM8000_V001"/>
+      <DO name="AnIn10" type="SE_Mv2_PM8000_V001"/>
+      <DO name="AnIn11" type="SE_Mv2_PM8000_V001"/>
+      <DO name="AnIn12" type="SE_Mv2_PM8000_V001"/>
+      <DO name="AnIn13" type="SE_Mv2_PM8000_V001"/>
+      <DO name="AnIn14" type="SE_Mv2_PM8000_V001"/>
+      <DO name="AnIn15" type="SE_Mv2_PM8000_V001"/>
+      <DO name="AnIn16" type="SE_Mv2_PM8000_V001"/>
+    </LNodeType>
+    <LNodeType id="SE_GGIOCUS2_PM8000_V001" lnClass="GGIO">
+      <DO name="Mod" type="SE_Mod_PM8000_V001"/>
+      <DO name="Beh" type="SE_Beh_PM8000_V001"/>
+      <DO name="Health" type="SE_Health_PM8000_V001"/>
+      <DO name="NamPlt" type="SE_Lpl2_PM8000_V001"/>
+      <DO name="Ind1" type="SE_Sps_PM8000_V001"/>
+      <DO name="Ind2" type="SE_Sps_PM8000_V001"/>
+      <DO name="Ind3" type="SE_Sps_PM8000_V001"/>
+      <DO name="Ind4" type="SE_Sps_PM8000_V001"/>
+      <DO name="Ind5" type="SE_Sps_PM8000_V001"/>
+      <DO name="Ind6" type="SE_Sps_PM8000_V001"/>
+      <DO name="Ind7" type="SE_Sps_PM8000_V001"/>
+      <DO name="Ind8" type="SE_Sps_PM8000_V001"/>
+      <DO name="Ind9" type="SE_Sps_PM8000_V001"/>
+      <DO name="Ind10" type="SE_Sps_PM8000_V001"/>
+      <DO name="Ind11" type="SE_Sps_PM8000_V001"/>
+      <DO name="Ind12" type="SE_Sps_PM8000_V001"/>
+      <DO name="Ind13" type="SE_Sps_PM8000_V001"/>
+      <DO name="Ind14" type="SE_Sps_PM8000_V001"/>
+      <DO name="Ind15" type="SE_Sps_PM8000_V001"/>
+      <DO name="Ind16" type="SE_Sps_PM8000_V001"/>
+    </LNodeType>
+    <LNodeType id="SE_GGIOONB1_PM8000_V001" lnClass="GGIO">
+      <DO name="Mod" type="SE_Mod_PM8000_V001"/>
+      <DO name="Beh" type="SE_Beh_PM8000_V001"/>
+      <DO name="Health" type="SE_Health_PM8000_V001"/>
+      <DO name="NamPlt" type="SE_Lpl2_PM8000_V001"/>
+      <DO name="SPCSO1" type="SE_Spc_PM8000_V001"/>
+      <DO name="Ind1" type="SE_Sps_PM8000_V001"/>
+      <DO name="Ind2" type="SE_Sps_PM8000_V001"/>
+      <DO name="Ind3" type="SE_Sps_PM8000_V001"/>
+    </LNodeType>
+    <LNodeType id="SE_LLN0_PM8000_V001" lnClass="LLN0">
+      <DO name="Mod" type="SE_Mod_PM8000_V001"/>
+      <DO name="Beh" type="SE_Beh_PM8000_V001"/>
+      <DO name="Health" type="SE_Health_PM8000_V001"/>
+      <DO name="NamPlt" type="SE_Lpl_PM8000_V001"/>
+    </LNodeType>
+    <LNodeType id="SE_LPHD_PM8000_V001" lnClass="LPHD">
+      <DO name="PhyNam" type="SE_Dpl_PM8000_V001"/>
+      <DO name="PhyHealth" type="SE_Health_PM8000_V001"/>
+      <DO name="Proxy" type="SE_Sps_PM8000_V001"/>
+    </LNodeType>
+    <LNodeType id="SE_MHAI_PM8000_V001" lnClass="MHAI">
+      <DO name="Mod" type="SE_Mod_PM8000_V001"/>
+      <DO name="Beh" type="SE_Beh_PM8000_V001"/>
+      <DO name="Health" type="SE_Health_PM8000_V001"/>
+      <DO name="NamPlt" type="SE_Lpl2_PM8000_V001"/>
+      <DO name="Hz" type="SE_Mv_PM8000_V001"/>
+      <DO name="HA" type="SE_HWye_PM8000_V001"/>
+      <DO name="HPhV" type="SE_HWye2_PM8000_V001"/>
+      <DO name="HPPV" type="SE_HDel_PM8000_V001"/>
+      <DO name="HKf" type="SE_Wye_PM8000_V001"/>
+      <DO name="ThdA" type="SE_Wye_PM8000_V001"/>
+	  <DO name="HCfA" type="SE_Wye_PM8000_V001"/>
+      <DO name="ThdOddA" type="SE_Wye_PM8000_V001"/>
+      <DO name="ThdEvnA" type="SE_Wye_PM8000_V001"/>
+      <DO name="ThdPhV" type="SE_Wye2_PM8000_V001"/>
+      <DO name="ThdOddPhV" type="SE_Wye2_PM8000_V001"/>
+      <DO name="ThdEvnPhV" type="SE_Wye2_PM8000_V001"/>
+      <DO name="ThdPPV" type="SE_Del_PM8000_V001"/>
+      <DO name="ThdOddPPV" type="SE_Del_PM8000_V001"/>
+      <DO name="ThdEvnPPV" type="SE_Del_PM8000_V001"/>
+    </LNodeType>
+    <LNodeType id="SE_MMTR_PM8000_V001" lnClass="MMTR">
+      <DO name="Mod" type="SE_Mod_PM8000_V001"/>
+      <DO name="Beh" type="SE_Beh_PM8000_V001"/>
+      <DO name="Health" type="SE_Health_PM8000_V001"/>
+      <DO name="NamPlt" type="SE_Lpl2_PM8000_V001"/>
+      <DO name="TotVAh" type="SE_Bcr_PM8000_V001"/>
+      <DO name="TotWh" type="SE_Bcr_PM8000_V001"/>
+      <DO name="TotVArh" type="SE_Bcr_PM8000_V001"/>
+      <DO name="SupWh" type="SE_Bcr_PM8000_V001"/>
+      <DO name="SupVArh" type="SE_Bcr_PM8000_V001"/>
+      <DO name="DmdWh" type="SE_Bcr_PM8000_V001"/>
+      <DO name="DmdVArh" type="SE_Bcr_PM8000_V001"/>
+    </LNodeType>
+    <LNodeType id="SE_MMXU_PM8000_V001" lnClass="MMXU">
+      <DO name="Mod" type="SE_Mod_PM8000_V001"/>
+      <DO name="Beh" type="SE_Beh_PM8000_V001"/>
+      <DO name="Health" type="SE_Health_PM8000_V001"/>
+      <DO name="NamPlt" type="SE_Lpl2_PM8000_V001"/>
+      <DO name="TotW" type="SE_Mv_PM8000_V001"/>
+      <DO name="TotVAr" type="SE_Mv_PM8000_V001"/>
+      <DO name="TotVA" type="SE_Mv_PM8000_V001"/>
+      <DO name="TotPF" type="SE_Mv_PM8000_V001"/>
+      <DO name="Hz" type="SE_Mv_PM8000_V001"/>
+      <DO name="PPV" type="SE_Del_PM8000_V001"/>
+      <DO name="PhV" type="SE_Wye2_PM8000_V001"/>
+      <DO name="A" type="SE_Wye_PM8000_V001"/>
+      <DO name="W" type="SE_Wye3_PM8000_V001"/>
+      <DO name="VAr" type="SE_Wye3_PM8000_V001"/>
+      <DO name="VA" type="SE_Wye3_PM8000_V001"/>
+      <DO name="PF" type="SE_Wye3_PM8000_V001"/>
+    </LNodeType>
+    <LNodeType id="SE_MSQI_PM8000_V001" lnClass="MSQI">
+      <DO name="Mod" type="SE_Mod_PM8000_V001"/>
+      <DO name="Beh" type="SE_Beh_PM8000_V001"/>
+      <DO name="Health" type="SE_Health_PM8000_V001"/>
+      <DO name="NamPlt" type="SE_Lpl2_PM8000_V001"/>
+      <DO name="SeqA" type="SE_Seq_PM8000_V001"/>
+      <DO name="SeqV" type="SE_Seq_PM8000_V001"/>
+    </LNodeType>
+    <LNodeType id="SE_MSTA_PM8000_V001" lnClass="MSTA">
+      <DO name="Mod" type="SE_Mod_PM8000_V001"/>
+      <DO name="Beh" type="SE_Beh_PM8000_V001"/>
+      <DO name="Health" type="SE_Health_PM8000_V001"/>
+      <DO name="NamPlt" type="SE_Lpl2_PM8000_V001"/>
+      <DO name="AvVA" type="SE_Mv_PM8000_V001"/>
+      <DO name="MaxVA" type="SE_Mv_PM8000_V001"/>
+      <DO name="MinVA" type="SE_Mv_PM8000_V001"/>
+      <DO name="AvW" type="SE_Mv_PM8000_V001"/>
+      <DO name="MaxW" type="SE_Mv_PM8000_V001"/>
+      <DO name="MinW" type="SE_Mv_PM8000_V001"/>
+      <DO name="AvVAr" type="SE_Mv_PM8000_V001"/>
+      <DO name="MaxVAr" type="SE_Mv_PM8000_V001"/>
+      <DO name="MinVAr" type="SE_Mv_PM8000_V001"/>
+    </LNodeType>
+    <LNodeType id="SE_RDRE_PM8000_V001" lnClass="RDRE">
+      <DO name="Mod" type="SE_Mod_PM8000_V001"/>
+      <DO name="Beh" type="SE_Beh_PM8000_V001"/>
+      <DO name="Health" type="SE_Health_PM8000_V001"/>
+      <DO name="NamPlt" type="SE_Lpl2_PM8000_V001"/>
+      <DO name="RcdMade" type="SE_Sps_PM8000_V001"/>
+      <DO name="FltNum" type="SE_Ins_PM8000_V001"/>
+    </LNodeType>
+<!-- ======================================================================================
+      		DATA OBJECTS
+	======================================================================================= -->
+    <DOType cdc="BCR" id="SE_Bcr_PM8000_V001">
+      <DA bType="INT32" dchg="true" fc="ST" name="actVal"/>
+      <DA bType="Quality" fc="ST" name="q" qchg="true"/>
+      <DA bType="Timestamp" fc="ST" name="t"/>
+      <DA bType="Struct" fc="CF" name="units" type="SE_Unit_PM8000_V001"/>
+      <DA bType="FLOAT32" fc="CF" name="pulsQty" valKind="RO">
+        <Val>1000</Val>
+      </DA>
+      <DA bType="VisString255" fc="DC" name="d"/>
+    </DOType>
+    <DOType cdc="CMV" id="SE_Cmv_PM8000_V001">
+      <DA bType="Struct" fc="MX" name="instCVal" type="SE_Vector_PM8000_V001"/>
+      <DA bType="Struct" dchg="true" fc="MX" name="cVal" type="SE_Vector_PM8000_V001"/>
+      <DA bType="Quality" fc="MX" name="q" qchg="true"/>
+      <DA bType="Timestamp" fc="MX" name="t"/>
+      <DA bType="Struct" fc="CF" name="units" type="SE_Unit_PM8000_V001" valKind="RO"/>
+      <DA bType="INT32U" fc="CF" name="db"/>
+      <DA bType="VisString255" fc="DC" name="d"/>
+    </DOType>
+    <DOType cdc="CMV" id="SE_Cmv2_PM8000_V001">
+      <DA bType="Struct" fc="MX" name="instCVal" type="SE_Vector2_PM8000_V001"/>
+      <DA bType="Struct" dchg="true" fc="MX" name="cVal" type="SE_Vector2_PM8000_V001"/>
+      <DA bType="Quality" fc="MX" name="q" qchg="true"/>
+      <DA bType="Timestamp" fc="MX" name="t"/>
+      <DA bType="Struct" fc="CF" name="units" type="SE_Unit_PM8000_V001" valKind="RO"/>
+      <DA bType="INT32U" fc="CF" name="db"/>
+      <DA bType="VisString255" fc="DC" name="d"/>
+    </DOType>
+    <DOType cdc="DEL" id="SE_Del_PM8000_V001">
+      <SDO name="phsAB" type="SE_Cmv_PM8000_V001"/>
+      <SDO name="phsBC" type="SE_Cmv_PM8000_V001"/>
+      <SDO name="phsCA" type="SE_Cmv_PM8000_V001"/>
+      <DA bType="VisString255" fc="DC" name="d"/>
+    </DOType>
+    <DOType cdc="DPL" id="SE_Dpl_PM8000_V001">
+      <DA bType="VisString255" fc="DC" name="vendor" valKind="RO">
+        <Val>Schneider Electric</Val>
+      </DA>
+      <DA bType="VisString255" fc="DC" name="swRev" valKind="RO"/>
+      <DA bType="VisString255" fc="DC" name="serNum" valKind="RO"/>
+      <DA bType="VisString255" fc="DC" name="model" valKind="RO"/>
+      <DA bType="VisString255" fc="DC" name="location"/>
+    </DOType>
+    <DOType cdc="HDEL" id="SE_HDel_PM8000_V001">
+      <DA bType="Quality" fc="MX" name="q" qchg="true"/>
+      <DA bType="Timestamp" fc="MX" name="t"/>
+      <DA bType="Struct" count="51" dchg="true" fc="MX" name="phsABHar" qchg="true" type="SE_Vector2_PM8000_V001"/>
+      <DA bType="Struct" count="51" dchg="true" fc="MX" name="phsBCHar" qchg="true" type="SE_Vector2_PM8000_V001"/>
+      <DA bType="Struct" count="51" dchg="true" fc="MX" name="phsCAHar" qchg="true" type="SE_Vector2_PM8000_V001"/>
+      <DA bType="INT16U" fc="CF" name="numHar" valKind="RO">
+        <Val>50</Val>
+      </DA>
+      <DA bType="INT16U" fc="CF" name="numCyc" valKind="RO"/>
+      <DA bType="INT16U" fc="CF" name="evalTm" valKind="RO"/>
+      <DA bType="FLOAT32" fc="CF" name="frequency" valKind="RO"/>
+      <DA bType="VisString255" fc="DC" name="d"/>
+    </DOType>
+    <DOType cdc="HWYE" id="SE_HWye_PM8000_V001">
+      <DA bType="Quality" fc="MX" name="q" qchg="true"/>
+      <DA bType="Timestamp" fc="MX" name="t"/>
+      <DA bType="Struct" count="51" dchg="true" dupd="true" fc="MX" name="phsAHar" type="SE_Vector2_PM8000_V001"/>
+      <DA bType="Struct" count="51" dchg="true" dupd="true" fc="MX" name="phsBHar" type="SE_Vector2_PM8000_V001"/>
+      <DA bType="Struct" count="51" dchg="true" dupd="true" fc="MX" name="phsCHar" type="SE_Vector2_PM8000_V001"/>
+      <DA bType="Struct" count="51" dchg="true" dupd="true" fc="MX" name="neutHar" type="SE_Vector2_PM8000_V001"/>
+      <DA bType="Struct" count="51" dchg="true" dupd="true" fc="MX" name="netHar" type="SE_Vector2_PM8000_V001"/>
+      <DA bType="INT16U" fc="CF" name="numHar" valKind="RO">
+        <Val>50</Val>
+      </DA>
+      <DA bType="INT16U" fc="CF" name="numCyc" valKind="RO"/>
+      <DA bType="INT16U" fc="CF" name="evalTm" valKind="RO"/>
+      <DA bType="FLOAT32" fc="CF" name="frequency" valKind="RO"/>
+      <DA bType="VisString255" fc="DC" name="d"/>
+    </DOType>
+    <DOType cdc="HWYE" id="SE_HWye2_PM8000_V001">
+      <DA bType="Quality" fc="MX" name="q" qchg="true"/>
+      <DA bType="Timestamp" fc="MX" name="t"/>
+      <DA bType="Struct" count="51" dchg="true" dupd="true" fc="MX" name="phsAHar" type="SE_Vector2_PM8000_V001"/>
+      <DA bType="Struct" count="51" dchg="true" dupd="true" fc="MX" name="phsBHar" type="SE_Vector2_PM8000_V001"/>
+      <DA bType="Struct" count="51" dchg="true" dupd="true" fc="MX" name="phsCHar" type="SE_Vector2_PM8000_V001"/>
+      <DA bType="INT16U" fc="CF" name="numHar" valKind="RO">
+        <Val>50</Val>
+      </DA>
+      <DA bType="INT16U" fc="CF" name="numCyc" valKind="RO"/>
+      <DA bType="INT16U" fc="CF" name="evalTm" valKind="RO"/>
+      <DA bType="FLOAT32" fc="CF" name="frequency" valKind="RO"/>
+      <DA bType="VisString255" fc="DC" name="d"/>
+    </DOType>
+    <DOType cdc="INC" id="SE_Mod_PM8000_V001">
+      <DA bType="Enum" dchg="true" fc="ST" name="stVal" type="SE_StVal_PM8000_V001"/>
+      <DA bType="Quality" fc="ST" name="q" qchg="true"/>
+      <DA bType="Timestamp" fc="ST" name="t"/>
+      <DA bType="Enum" fc="CF" name="ctlModel" type="SE_CtlModel_PM8000_V001" valKind="RO">
+        <Val>status-only</Val>
+      </DA>
+      <DA bType="VisString255" fc="DC" name="d"/>
+    </DOType>
+    <DOType cdc="INS" id="SE_Beh_PM8000_V001">
+      <DA bType="Enum" dchg="true" fc="ST" name="stVal" type="SE_StVal_PM8000_V001"/>
+      <DA bType="Quality" fc="ST" name="q" qchg="true"/>
+      <DA bType="Timestamp" fc="ST" name="t"/>
+      <DA bType="VisString255" fc="DC" name="d"/>
+    </DOType>
+    <DOType cdc="INS" id="SE_Health_PM8000_V001">
+      <DA bType="Enum" dchg="true" fc="ST" name="stVal" type="SE_StVal2_PM8000_V001"/>
+      <DA bType="Quality" fc="ST" name="q" qchg="true"/>
+      <DA bType="Timestamp" fc="ST" name="t"/>
+      <DA bType="VisString255" fc="DC" name="d"/>
+    </DOType>
+    <DOType cdc="INS" id="SE_Ins_PM8000_V001">
+      <DA bType="INT32" dchg="true" fc="ST" name="stVal"/>
+      <DA bType="Quality" fc="ST" name="q" qchg="true"/>
+      <DA bType="Timestamp" fc="ST" name="t"/>
+      <DA bType="VisString255" fc="DC" name="d"/>
+    </DOType>
+    <DOType cdc="LPL" id="SE_Lpl_PM8000_V001">
+      <DA bType="VisString255" fc="DC" name="vendor" valKind="RO">
+        <Val>Schneider Electric</Val>
+      </DA>
+      <DA bType="VisString255" fc="DC" name="swRev" valKind="RO"/>
+      <DA bType="VisString255" fc="DC" name="d">
+        <Val>High End Meter</Val>
+      </DA>
+      <DA bType="VisString255" fc="DC" name="configRev" valKind="RO"/>
+      <DA bType="VisString255" fc="EX" name="ldNs" valKind="RO">
+        <Val>IEC 61850-7-4:2003</Val>
+      </DA>
+    </DOType>
+    <DOType cdc="LPL" id="SE_Lpl2_PM8000_V001">
+      <DA bType="VisString255" fc="DC" name="vendor" valKind="RO">
+        <Val>Schneider Electric</Val>
+      </DA>
+      <DA bType="VisString255" fc="DC" name="swRev" valKind="RO"/>
+      <DA bType="VisString255" fc="DC" name="d">
+        <Val>High End Meter</Val>
+      </DA>
+    </DOType>
+    <DOType cdc="MV" id="SE_Mv_PM8000_V001">
+      <DA bType="Struct" fc="MX" name="instMag" type="SE_AnalogVal_PM8000_V001"/>
+      <DA bType="Struct" dchg="true" fc="MX" name="mag" type="SE_AnalogVal_PM8000_V001"/>
+      <DA bType="Quality" fc="MX" name="q" qchg="true"/>
+      <DA bType="Timestamp" fc="MX" name="t"/>
+      <DA bType="Struct" fc="CF" name="units" type="SE_Unit_PM8000_V001" valKind="RO"/>
+      <DA bType="INT32U" fc="CF" name="db"/>
+      <DA bType="VisString255" fc="DC" name="d"/>
+    </DOType>
+    <DOType cdc="MV" id="SE_Mv2_PM8000_V001">
+      <DA bType="Struct" fc="MX" name="instMag" type="SE_AnalogVal_PM8000_V001"/>
+      <DA bType="Struct" dchg="true" fc="MX" name="mag" type="SE_AnalogVal_PM8000_V001"/>
+      <DA bType="Quality" fc="MX" name="q" qchg="true"/>
+      <DA bType="Timestamp" fc="MX" name="t"/>
+      <DA bType="INT32U" fc="CF" name="db"/>
+      <DA bType="VisString255" fc="DC" name="d"/>
+    </DOType>
+    <DOType cdc="SEQ" id="SE_Seq_PM8000_V001">
+      <SDO name="c1" type="SE_Cmv2_PM8000_V001"/>
+      <SDO name="c2" type="SE_Cmv2_PM8000_V001"/>
+      <SDO name="c3" type="SE_Cmv2_PM8000_V001"/>
+      <DA bType="Enum" fc="MX" name="seqT" type="SE_SeqT_PM8000_V001" valKind="RO">
+        <Val>pos-neg-zero</Val>
+      </DA>
+      <DA bType="VisString255" fc="DC" name="d"/>
+    </DOType>
+    <DOType cdc="SPC" id="SE_Spc_PM8000_V001">
+      <DA bType="BOOLEAN" dchg="true" fc="ST" name="stVal"/>
+      <DA bType="Quality" fc="ST" name="q" qchg="true"/>
+      <DA bType="Timestamp" fc="ST" name="t"/>
+      <DA bType="Struct" fc="CO" name="Oper" type="SE_Oper_PM8000_V001"/>
+      <DA bType="Enum" fc="CF" name="ctlModel" type="SE_CtlModel_PM8000_V001" valKind="RO">
+        <Val>direct-with-normal-security</Val>
+      </DA>
+      <DA bType="VisString255" fc="DC" name="d"/>
+    </DOType>
+    <DOType cdc="SPS" id="SE_Sps_PM8000_V001">
+      <DA bType="BOOLEAN" dchg="true" fc="ST" name="stVal"/>
+      <DA bType="Quality" fc="ST" name="q" qchg="true"/>
+      <DA bType="Timestamp" fc="ST" name="t"/>
+      <DA bType="VisString255" fc="DC" name="d"/>
+    </DOType>
+    <DOType cdc="WYE" id="SE_Wye_PM8000_V001">
+      <SDO name="phsA" type="SE_Cmv_PM8000_V001"/>
+      <SDO name="phsB" type="SE_Cmv_PM8000_V001"/>
+      <SDO name="phsC" type="SE_Cmv_PM8000_V001"/>
+      <SDO name="neut" type="SE_Cmv_PM8000_V001"/>
+      <SDO name="net" type="SE_Cmv_PM8000_V001"/>
+      <DA bType="VisString255" fc="DC" name="d"/>
+    </DOType>
+    <DOType cdc="WYE" id="SE_Wye2_PM8000_V001">
+      <SDO name="phsA" type="SE_Cmv_PM8000_V001"/>
+      <SDO name="phsB" type="SE_Cmv_PM8000_V001"/>
+      <SDO name="phsC" type="SE_Cmv_PM8000_V001"/>
+      <DA bType="VisString255" fc="DC" name="d"/>
+    </DOType>
+    <DOType cdc="WYE" id="SE_Wye3_PM8000_V001">
+      <SDO name="phsA" type="SE_Cmv_PM8000_V001"/>
+      <SDO name="phsB" type="SE_Cmv_PM8000_V001"/>
+      <SDO name="phsC" type="SE_Cmv_PM8000_V001"/>
+      <DA bType="VisString255" fc="DC" name="d"/>
+    </DOType>
+<!-- ======================================================================================
+      		DATA ATTRIBUTES
+   	======================================================================================= -->
+    <DAType id="SE_Oper_PM8000_V001">
+      <BDA bType="BOOLEAN" name="ctlVal"/>
+      <BDA bType="Struct" name="origin" type="SE_Originator_PM8000_V001"/>
+      <BDA bType="INT8U" name="ctlNum"/>
+      <BDA bType="Timestamp" name="T"/>
+      <BDA bType="BOOLEAN" name="Test"/>
+      <BDA bType="Check" name="Check"/>
+    </DAType>
+    <DAType id="SE_Originator_PM8000_V001">
+      <BDA bType="Enum" name="orCat" type="SE_orCategory_PM8000_V001"/>
+      <BDA bType="Octet64" name="orIdent"/>
+    </DAType>
+    <DAType id="SE_Vector_PM8000_V001">
+      <BDA bType="Struct" name="mag" type="SE_AnalogVal_PM8000_V001"/>
+    </DAType>
+    <DAType id="SE_Vector2_PM8000_V001">
+      <BDA bType="Struct" name="mag" type="SE_AnalogVal_PM8000_V001"/>
+      <BDA bType="Struct" name="ang" type="SE_AnalogVal_PM8000_V001"/>
+    </DAType>
+    <DAType id="SE_AnalogVal_PM8000_V001">
+      <BDA bType="FLOAT32" name="f"/>
+    </DAType>
+    <DAType id="SE_Unit_PM8000_V001">
+      <BDA bType="Enum" name="SIUnit" type="SE_SIUnit_PM8000_V001"/>
+      <BDA bType="Enum" name="multiplier" type="SE_Multiplier_PM8000_V001"/>
+    </DAType>
+<!-- ======================================================================================
+     		ENUMERATIONS
+   	======================================================================================= -->
+    <EnumType id="SE_StVal_PM8000_V001">
+      <EnumVal ord="1">on</EnumVal>
+      <EnumVal ord="2">blocked</EnumVal>
+      <EnumVal ord="3">test</EnumVal>
+      <EnumVal ord="4">test/blocked</EnumVal>
+      <EnumVal ord="5">off</EnumVal>
+    </EnumType>
+    <EnumType id="SE_StVal2_PM8000_V001">
+      <EnumVal ord="1">Ok</EnumVal>
+      <EnumVal ord="2">Warning</EnumVal>
+      <EnumVal ord="3">Alarm</EnumVal>
+    </EnumType>
+    <EnumType id="SE_CtlModel_PM8000_V001">
+      <EnumVal ord="0">status-only</EnumVal>
+      <EnumVal ord="1">direct-with-normal-security</EnumVal>
+      <EnumVal ord="2">sbo-with-normal-security</EnumVal>
+      <EnumVal ord="3">direct-with-enhanced-security</EnumVal>
+      <EnumVal ord="4">sbo-with-enhanced-security</EnumVal>
+    </EnumType>
+    <EnumType id="SE_orCategory_PM8000_V001">
+      <EnumVal ord="0">not-supported</EnumVal>
+      <EnumVal ord="1">bay-control</EnumVal>
+      <EnumVal ord="2">station-control</EnumVal>
+      <EnumVal ord="3">remote-control</EnumVal>
+      <EnumVal ord="4">automatic-bay</EnumVal>
+      <EnumVal ord="5">automatic-station</EnumVal>
+      <EnumVal ord="6">automatic-remote</EnumVal>
+      <EnumVal ord="7">maintenance</EnumVal>
+      <EnumVal ord="8">process</EnumVal>
+    </EnumType>
+    <EnumType id="SE_Multiplier_PM8000_V001">
+      <EnumVal ord="-24">y</EnumVal>
+      <EnumVal ord="-21">z</EnumVal>
+      <EnumVal ord="-18">a</EnumVal>
+      <EnumVal ord="-15">f</EnumVal>
+      <EnumVal ord="-12">p</EnumVal>
+      <EnumVal ord="-9">n</EnumVal>
+      <EnumVal ord="-6">µ</EnumVal>
+      <EnumVal ord="-3">m</EnumVal>
+      <EnumVal ord="-2">c</EnumVal>
+      <EnumVal ord="-1">d</EnumVal>
+      <EnumVal ord="0"/>
+      <EnumVal ord="1">da</EnumVal>
+      <EnumVal ord="2">h</EnumVal>
+      <EnumVal ord="3">k</EnumVal>
+      <EnumVal ord="6">M</EnumVal>
+      <EnumVal ord="9">G</EnumVal>
+      <EnumVal ord="12">T</EnumVal>
+      <EnumVal ord="15">P</EnumVal>
+      <EnumVal ord="18">E</EnumVal>
+      <EnumVal ord="21">Z</EnumVal>
+      <EnumVal ord="24">Y</EnumVal>
+    </EnumType>
+    <EnumType id="SE_SeqT_PM8000_V001">
+      <EnumVal ord="0">pos-neg-zero</EnumVal>
+      <EnumVal ord="1">dir-quad-zero</EnumVal>
+    </EnumType>
+    <EnumType id="SE_SIUnit_PM8000_V001">
+      <EnumVal ord="1"/>
+      <EnumVal ord="2">m</EnumVal>
+      <EnumVal ord="3">kg</EnumVal>
+      <EnumVal ord="4">s</EnumVal>
+      <EnumVal ord="5">A</EnumVal>
+      <EnumVal ord="6">K</EnumVal>
+      <EnumVal ord="7">mol</EnumVal>
+      <EnumVal ord="8">cd</EnumVal>
+      <EnumVal ord="9">deg</EnumVal>
+      <EnumVal ord="10">rad</EnumVal>
+      <EnumVal ord="11">sr</EnumVal>
+      <EnumVal ord="21">Gy</EnumVal>
+      <EnumVal ord="22">q</EnumVal>
+      <EnumVal ord="23">°C</EnumVal>
+      <EnumVal ord="24">Sv</EnumVal>
+      <EnumVal ord="25">F</EnumVal>
+      <EnumVal ord="26">C</EnumVal>
+      <EnumVal ord="27">S</EnumVal>
+      <EnumVal ord="28">H</EnumVal>
+      <EnumVal ord="29">V</EnumVal>
+      <EnumVal ord="30">ohm</EnumVal>
+      <EnumVal ord="31">J</EnumVal>
+      <EnumVal ord="32">N</EnumVal>
+      <EnumVal ord="33">Hz</EnumVal>
+      <EnumVal ord="34">lx</EnumVal>
+      <EnumVal ord="35">Lm</EnumVal>
+      <EnumVal ord="36">Wb</EnumVal>
+      <EnumVal ord="37">T</EnumVal>
+      <EnumVal ord="38">W</EnumVal>
+      <EnumVal ord="39">Pa</EnumVal>
+      <EnumVal ord="41">m²</EnumVal>
+      <EnumVal ord="42">m³</EnumVal>
+      <EnumVal ord="43">m/s</EnumVal>
+      <EnumVal ord="44">m/s²</EnumVal>
+      <EnumVal ord="45">m³/s</EnumVal>
+      <EnumVal ord="46">m/m³</EnumVal>
+      <EnumVal ord="47">M</EnumVal>
+      <EnumVal ord="48">kg/m³</EnumVal>
+      <EnumVal ord="49">m²/s</EnumVal>
+      <EnumVal ord="50">W/m K</EnumVal>
+      <EnumVal ord="51">J/K</EnumVal>
+      <EnumVal ord="52">ppm</EnumVal>
+      <EnumVal ord="53">1/s</EnumVal>
+      <EnumVal ord="54">rad/s</EnumVal>
+      <EnumVal ord="61">VA</EnumVal>
+      <EnumVal ord="62">Watts</EnumVal>
+      <EnumVal ord="63">VAr</EnumVal>
+      <EnumVal ord="64">phi</EnumVal>
+      <EnumVal ord="65">cos(phi)</EnumVal>
+      <EnumVal ord="66">Vs</EnumVal>
+      <EnumVal ord="67">V²</EnumVal>
+      <EnumVal ord="68">As</EnumVal>
+      <EnumVal ord="69">A²</EnumVal>
+      <EnumVal ord="70">A²t</EnumVal>
+      <EnumVal ord="71">VAh</EnumVal>
+      <EnumVal ord="72">Wh</EnumVal>
+      <EnumVal ord="73">VArh</EnumVal>
+      <EnumVal ord="74">V/Hz</EnumVal>
+    </EnumType>
+  </DataTypeTemplates>
+</SCL>

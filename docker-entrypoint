@@ -1,0 +1,27 @@
+#!/bin/sh
+
+LOCAL_IP=$(hostname -i |grep -E -oh '((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])'|head -n 1)
+
+if [ -z "$IED_NAME" ]; then
+    export IED_NAME="IED"
+fi
+
+if [ -z "$MMS_PORT" ]; then
+    export MMS_PORT=102
+fi
+
+
+cd /opt
+
+echo "Compiling IED model..."
+java -jar tools/model-generator/genmodel.jar ../model.cid -out src/static_model
+
+echo "Compiling simulation..."
+cc -pthread -I./include -L./lib -DMAX_MMS_CONNECTIONS=4 -o 61850-sim ./src/61850-sim.c ./src/static_model.c -liec61850 -lm
+
+echo "Preparing simulation..."
+chmod +x /opt/61850-sim
+#file /opt/61850-sim
+
+echo "Running simulation..."
+exec /opt/61850-sim

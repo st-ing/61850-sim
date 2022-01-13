@@ -1,0 +1,54 @@
+image: alpine
+
+pipelines:
+  branches:
+    
+    develop:
+      # - step:
+      #     name: "Pre-tests"
+      #     services:
+      #       - docker
+      #     script:
+      #       - echo "...some testing prior to build ..."
+      - step:
+          name: 'Building and pushing (development) docker image'
+          services:
+            - docker
+          caches:
+            - docker
+          script:
+            - docker build --pull --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') --build-arg BUILD_NUMBER=$BITBUCKET_BUILD_NUMBER -t $DOCKER_REGISTRY/61850-sim:dev .
+            - docker login -u $DOCKER_REGISTRY_USER -p $DOCKER_REGISTRY_PASS $DOCKER_REGISTRY
+            - docker push $DOCKER_REGISTRY/61850-sim:dev
+      # - step:
+      #     name: "Post-tests"
+      #     services:
+      #       - docker
+      #     script:
+      #       - echo "...some testing after to build ..."
+ 
+    
+    master:
+      - step:
+          name: 'Building and pushing docker image'
+          services:
+            - docker
+          caches:
+            - docker
+          script:
+            - docker build --pull --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') --build-arg BUILD_NUMBER=$BITBUCKET_BUILD_NUMBER -t $DOCKER_REGISTRY/61850-sim:$BITBUCKET_BUILD_NUMBER .
+            - docker tag $DOCKER_REGISTRY/61850-sim:$BITBUCKET_BUILD_NUMBER $DOCKER_REGISTRY/61850-sim
+            - docker login -u $DOCKER_REGISTRY_USER -p $DOCKER_REGISTRY_PASS $DOCKER_REGISTRY
+            - docker push $DOCKER_REGISTRY/61850-sim:$BITBUCKET_BUILD_NUMBER
+            - docker push $DOCKER_REGISTRY/61850-sim
+      # - step:
+      #     name: "Post-publish"
+      #     services:
+      #       - docker
+      #     script:
+      #       - echo "...some testing after to build ..."
+
+
+      
+
+

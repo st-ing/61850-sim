@@ -1,0 +1,7 @@
+.DS_Store
+61850-sim
+src/static_model.*
+
+misc/Hitachi*
+res/MSM.scd
+res/TEC.scd
