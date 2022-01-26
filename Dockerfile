@@ -13,7 +13,7 @@ LABEL org.opencontainers.image.created=$BUILD_DATE
 LABEL org.opencontainers.image.vendor="sting GmbH"
 LABEL org.opencontainers.image.base.name="stinging/61850-sim"
 
-RUN apk add linux-headers build-base openjdk8
+RUN apk add linux-headers build-base openjdk8 libxml2-dev libxml2
 
 # simulation related
 COPY include ./opt/include

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataPointsCoefficients>
+  <DataPoint name="LD0.ONB1_GGIO1.SPCSO3.stVal" i="3" type="IEC61850_BOOLEAN">
+    <Coefficient name="A" randomness="0.01">1</Coefficient>
+    <Coefficient name="B" randomness="0.01">2</Coefficient>
+  </DataPoint>
+  <DataPoint name="LD0.EXP6_GGIO2.ISCSO2.stVal" i="17" type="IEC61850_INT32">
+    <Coefficient name="A" randomness="0.05">50.0</Coefficient>
+    <Coefficient name="B" randomness="0.05">100.0</Coefficient>
+    <Coefficient name="C" randomness="0.01">0.40</Coefficient>
+    <Coefficient name="D" randomness="0.10">3.79</Coefficient>
+  </DataPoint>
+  <DataPoint name="LD0.EXP6_GGIO2.AnIn3.mag.f" i="22" type="IEC61850_FLOAT32">
+    <Coefficient name="A" randomness="0.10">10000</Coefficient>
+    <Coefficient name="B" randomness="0.10">5000</Coefficient>
+    <Coefficient name="C" randomness="0.10">1.485014</Coefficient>
+  </DataPoint>
+</DataPointsCoefficients>

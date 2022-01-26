@@ -17,7 +17,7 @@ echo "Compiling IED model..."
 java -jar tools/model-generator/genmodel.jar ../model.cid -out src/static_model
 
 echo "Compiling simulation..."
-cc -pthread -I./include -L./lib -DMAX_MMS_CONNECTIONS=4 -o 61850-sim ./src/61850-sim.c ./src/static_model.c -liec61850 -lm
+cc -pthread -I./include -I/usr/include/libxml2/ -L./lib -L/usr/lib -DMAX_MMS_CONNECTIONS=4 -o 61850-sim ./src/61850-sim.c ./src/static_model.c -liec61850 -lxml2 -lm
 
 echo "Preparing simulation..."
 chmod +x /opt/61850-sim

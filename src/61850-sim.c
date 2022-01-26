@@ -6,6 +6,10 @@
 #include <math.h>
 #include <float.h>
 
+#include <stdio.h>
+#include <libxml/parser.h>
+#include <libxml/tree.h>
+
 #include "static_model.h"
 
 extern IedModel iedModel;
@@ -77,6 +81,146 @@ float simC(int i) { return sim(C[i], Cr[i]); }
 float simD(int i) { return sim(D[i], Dr[i]); }
 //
 
+void loadCoefficients()
+{
+    xmlDoc *doc = NULL;
+    xmlNode *nodeRoot = NULL;
+
+    LIBXML_TEST_VERSION
+
+    doc = xmlReadFile("/config.xml", NULL, 0);
+
+    if (doc == NULL) return;
+
+    nodeRoot = xmlDocGetRootElement(doc);
+
+    for (xmlNode *nodeDataPoint = nodeRoot->children; nodeDataPoint; nodeDataPoint = nodeDataPoint->next) 
+    {
+        if (nodeDataPoint->type == XML_ELEMENT_NODE) 
+        {
+            int i = atoi(xmlGetProp(nodeDataPoint, "i"));
+            //printf("%s [%3d]  -  ", xmlGetProp(nodeDataPoint, "name"), i);
+
+            for (xmlNode *nodeCoefficient = nodeDataPoint->children; nodeCoefficient; nodeCoefficient = nodeCoefficient->next) {
+                if (nodeCoefficient->type == XML_ELEMENT_NODE) 
+                {
+                    //printf("  %s = %s ± %s\n", xmlGetProp(nodeCoefficient, "name"), xmlNodeGetContent(nodeCoefficient), xmlGetProp(nodeCoefficient, "randomness"));
+
+                    float X = atof(xmlNodeGetContent(nodeCoefficient));
+                    float Xr = atof(xmlGetProp(nodeCoefficient, "randomness"));
+
+                    if (!xmlStrcmp(xmlGetProp(nodeCoefficient, "name"), BAD_CAST "A"))
+                    {
+                        //printf("   A[%d] = %f ± %0.2f", i, X, Xr);
+                        A[i] = X;
+                        Ar[i] = Xr;
+                    }
+                    if (!xmlStrcmp(xmlGetProp(nodeCoefficient, "name"), BAD_CAST "B"))
+                    {
+                        //printf("   B[%d] = %f ± %0.2f", i, X, Xr);
+                        B[i] = X;
+                        Br[i] = Xr;
+                    }
+                    if (!xmlStrcmp(xmlGetProp(nodeCoefficient, "name"), BAD_CAST "C"))
+                    {
+                        //printf("   C[%d] = %f ± %0.2f", i, X, Xr);
+                        C[i] = X;
+                        Cr[i] = Xr;
+                    }
+                    if (!xmlStrcmp(xmlGetProp(nodeCoefficient, "name"), BAD_CAST "D"))
+                    {
+                        //printf("   D[%d] = %f ± %0.2f", i, X, Xr);
+                        D[i] = X;
+                        Dr[i] = Xr;
+                    }
+                }
+            }
+            //printf("\n");
+        }        
+    }
+
+    xmlFreeDoc(doc);
+    xmlCleanupParser();
+}
+
+void saveCoefficients()
+{
+    xmlDocPtr doc = NULL;
+    xmlNodePtr nodeRoot = NULL, nodeDataPoint = NULL, nodeCoefficient = NULL;  
+    char buff[256];
+
+    LIBXML_TEST_VERSION;
+
+    doc = xmlNewDoc(BAD_CAST "1.0");
+    nodeRoot = xmlNewNode(NULL, BAD_CAST "DataPointsCoefficients");
+    xmlDocSetRootElement(doc, nodeRoot);
+
+    for (int i = 0; i < dataPointsCount; i++) 
+    {
+        DataAttribute* dPV = dataPointsValues[i];
+
+        if ((IedModel *)(dPV->parent->parent->parent->parent) != &iedModel)
+            sprintf(buff, "%s.%s.%s.%s.%s", dPV->parent->parent->parent->parent->name, dPV->parent->parent->parent->name, dPV->parent->parent->name, dPV->parent->name, dPV->name);
+        else
+            sprintf(buff, "%s.%s.%s.%s", dPV->parent->parent->parent->name, dPV->parent->parent->name, dPV->parent->name, dPV->name);
+        
+        
+        nodeDataPoint = xmlNewChild(nodeRoot, NULL, BAD_CAST "DataPoint", NULL);
+        xmlNewProp(nodeDataPoint, BAD_CAST "name", BAD_CAST buff);      
+        sprintf(buff, "%d", i);xmlNewProp(nodeDataPoint, BAD_CAST "i", BAD_CAST buff);
+
+        if (dPV->type == IEC61850_BOOLEAN)
+            xmlNewProp(nodeDataPoint, BAD_CAST "type", BAD_CAST "IEC61850_BOOLEAN");
+        if (dPV->type == IEC61850_INT8)
+            xmlNewProp(nodeDataPoint, BAD_CAST "type", BAD_CAST "IEC61850_INT8");
+        if (dPV->type == IEC61850_INT16)
+            xmlNewProp(nodeDataPoint, BAD_CAST "type", BAD_CAST "IEC61850_INT16");
+        if (dPV->type == IEC61850_INT32)
+            xmlNewProp(nodeDataPoint, BAD_CAST "type", BAD_CAST "IEC61850_INT32");
+        if (dPV->type == IEC61850_INT64)
+            xmlNewProp(nodeDataPoint, BAD_CAST "type", BAD_CAST "IEC61850_INT64");
+        if (dPV->type == IEC61850_INT8U)
+            xmlNewProp(nodeDataPoint, BAD_CAST "type", BAD_CAST "IEC61850_INT8U");
+        if (dPV->type == IEC61850_INT16U)
+            xmlNewProp(nodeDataPoint, BAD_CAST "type", BAD_CAST "IEC61850_INT16U");
+        if (dPV->type == IEC61850_INT24U || dPV->type == IEC61850_INT32U)
+            xmlNewProp(nodeDataPoint, BAD_CAST "type", BAD_CAST "IEC61850_INT24/32U");
+        if (dPV->type == IEC61850_FLOAT32)
+            xmlNewProp(nodeDataPoint, BAD_CAST "type", BAD_CAST "IEC61850_FLOAT32");
+        if (dPV->type == IEC61850_FLOAT64)
+            xmlNewProp(nodeDataPoint, BAD_CAST "type", BAD_CAST "IEC61850_FLOAT64");
+
+        sprintf(buff, "%f", A[i]); 
+        nodeCoefficient = xmlNewChild(nodeDataPoint, NULL, BAD_CAST "Coefficient", BAD_CAST buff);
+        xmlNewProp(nodeCoefficient, BAD_CAST "name", BAD_CAST "A");
+        sprintf(buff, "%0.2f", Ar[i]);
+        xmlNewProp(nodeCoefficient, BAD_CAST "randomness", BAD_CAST buff);
+
+        sprintf(buff, "%f", B[i]); 
+        nodeCoefficient = xmlNewChild(nodeDataPoint, NULL, BAD_CAST "Coefficient", BAD_CAST buff);
+        xmlNewProp(nodeCoefficient, BAD_CAST "name", BAD_CAST "B");
+        sprintf(buff, "%0.2f", Br[i]);
+        xmlNewProp(nodeCoefficient, BAD_CAST "randomness", BAD_CAST buff);
+
+        sprintf(buff, "%f", C[i]); 
+        nodeCoefficient = xmlNewChild(nodeDataPoint, NULL, BAD_CAST "Coefficient", BAD_CAST buff);
+        xmlNewProp(nodeCoefficient, BAD_CAST "name", BAD_CAST "C");
+        sprintf(buff, "%0.2f", Cr[i]);
+        xmlNewProp(nodeCoefficient, BAD_CAST "randomness", BAD_CAST buff);
+
+        sprintf(buff, "%f", D[i]); 
+        nodeCoefficient = xmlNewChild(nodeDataPoint, NULL, BAD_CAST "Coefficient", BAD_CAST buff);
+        xmlNewProp(nodeCoefficient, BAD_CAST "name", BAD_CAST "D");
+        sprintf(buff, "%0.2f", Dr[i]);
+        xmlNewProp(nodeCoefficient, BAD_CAST "randomness", BAD_CAST buff);
+    }
+
+    xmlSaveFormatFileEnc("/config.xml", doc, "UTF-8", 1);
+    xmlFreeDoc(doc);
+    xmlCleanupParser();
+    xmlMemoryDump();
+}
+
 int main(int argc, char** argv)
 {
     char* ied_name = (getenv("IED_NAME") == NULL) ? "IED" : getenv("IED_NAME");
@@ -122,7 +266,7 @@ int main(int argc, char** argv)
     // New IEC 61850 server instance
     iedServer = IedServer_createWithConfig(&iedModel, NULL, config);
     IedServerConfig_destroy(config);
-    IedServer_setServerIdentity(iedServer, "sting GmbH", "Fuzzy IEC61850 Simulator", "1.0");
+    IedServer_setServerIdentity(iedServer, "sting GmbH", "Fuzzy IEC61850 Simulator", "1.1");
     
     // Tracking connections
     IedServer_setConnectionIndicationHandler(iedServer, (IedConnectionIndicationHandler) connectionHandler, NULL);
@@ -143,9 +287,19 @@ int main(int argc, char** argv)
     running = 1;
     signal(SIGINT, sigint_handler);
 
+    // init coefficients
+    dataPointsCount = 0;
+    for (int i=0; i<MAX_DATA_POINTS; i++)
+    {
+        A[i] = NAN; Ar[i] = NAN;
+        B[i] = NAN; Br[i] = NAN;
+        C[i] = NAN; Cr[i] = NAN;
+        D[i] = NAN; Dr[i] = NAN;
+    }
+    loadCoefficients();
+
     // runtime prepare
     printf("Browsing the model & preparing runtime... ");
-    dataPointsCount = 0;
 
     if (log_modeling) printf("\n");
 
@@ -240,42 +394,38 @@ int main(int argc, char** argv)
                     {
                         // default coeficients
                         int i = dataPointsCount;
-                        A[i] = 0.0f; Ar[i] = 0.01f;
-                        B[i] = 1.0f; Br[i] = 0.01f;
-                        C[i] = 1.0f; Cr[i] = 0.01f;
-                        D[i] = 0.0f; Dr[i] = 0.01f;
 
                         if (dP->type == IEC61850_BOOLEAN)
                         {
-                            B[i] = 1.0f; Br[i] = 0.1f;
+                            if isnan(B[i]) { B[i] = 1.0f; Br[i] = 0.01f; }
                             
                             if (log_modeling) printf(" [IEC61850_BOOLEAN]");
                             dA_VAL = dP;
                         }
                         if (dP->type == IEC61850_INT8)
                         {
-                            B[i] = 0.95f * INT8_MAX; Br[i] = 0.05f;
+                            if isnan(B[i]) { B[i] = 0.95f * INT8_MAX; Br[i] = 0.05f; }
 
                             if (log_modeling) printf(" [IEC61850_INT8]");
                             dA_VAL= dP;                            
                         }
                         if (dP->type == IEC61850_INT16)
                         {
-                            B[i] = 0.95f * INT16_MAX; Br[i] = 0.05f;
+                            if isnan(B[i]) { B[i] = 0.95f * INT16_MAX; Br[i] = 0.05f; }
 
                             if (log_modeling) printf(" [IEC61850_INT16]");
                             dA_VAL= dP;                            
                         }
                         if (dP->type == IEC61850_INT32)
                         {
-                            B[i] = 0.95f * INT32_MAX; Br[i] = 0.05f;
+                            if isnan(B[i]) { B[i] = 0.95f * INT32_MAX; Br[i] = 0.05f; }
 
                             if (log_modeling) printf(" [IEC61850_INT32]");
                             dA_VAL= dP;
                         }
                         if (dP->type == IEC61850_INT64)
                         {       
-                            B[i] = 0.95f * INT64_MAX; Br[i] = 0.05f;
+                            if isnan(B[i]) { B[i] = 0.95f * INT64_MAX; Br[i] = 0.05f; }
 
                             if (log_modeling) printf(" [IEC61850_INT64]");
                             int64_t z = 0;
@@ -283,8 +433,8 @@ int main(int argc, char** argv)
                         }
                         if (dP->type == IEC61850_INT8U)
                         {
-                            A[i] = 0.5f * INT8_MAX; Br[i] = 0.00f;
-                            B[i] = 0.45f * INT8_MAX; Br[i] = 0.05f;
+                            if isnan(A[i]) { A[i] = 0.5f * INT8_MAX; Br[i] = 0.00f; }
+                            if isnan(B[i]) { B[i] = 0.45f * INT8_MAX; Br[i] = 0.05f; }
 
                             if (log_modeling) printf(" [IEC61850_INT8U]");
                             uint8_t t = 0;
@@ -292,8 +442,8 @@ int main(int argc, char** argv)
                         }
                         if (dP->type == IEC61850_INT16U)
                         {
-                            A[i] = 0.5f * INT16_MAX; Br[i] = 0.00f;
-                            B[i] = 0.45f * INT16_MAX; Br[i] = 0.05f;
+                            if isnan(A[i]) { A[i] = 0.5f * INT16_MAX; Br[i] = 0.00f; }
+                            if isnan(B[i]) { B[i] = 0.45f * INT16_MAX; Br[i] = 0.05f; }
 
                             if (log_modeling) printf(" [IEC61850_INT16U]");
                             dA_VAL = dP;                            
@@ -301,44 +451,33 @@ int main(int argc, char** argv)
                         if (dP->type == IEC61850_INT24U ||
                             dP->type == IEC61850_INT32U)
                         {
-                            A[i] = 0.5f * INT32_MAX; Br[i] = 0.00f;
-                            B[i] = 0.45f * INT32_MAX; Br[i] = 0.05f;
+                            if isnan(A[i]) { A[i] = 0.5f * INT32_MAX; Br[i] = 0.00f; }
+                            if isnan(B[i]) { B[i] = 0.45f * INT32_MAX; Br[i] = 0.05f; }
 
-                            if (log_modeling) printf(" [EC61850_INT24/32U]");
+                            if (log_modeling) printf(" [IEC61850_INT24/32U]");
                             dA_VAL= dP;
                         }
                         if (dP->type == IEC61850_FLOAT32)
                         {
-                            B[i] = 0.95f * FLT_MAX; Br[i] = 0.05f;
+                            if isnan(B[i]) { B[i] = 0.95f * FLT_MAX; Br[i] = 0.05f; }
 
                             if (log_modeling) printf(" [IEC61850_FLOAT32]");
                             dA_VAL = dP;
                         }
                         if (dP->type == IEC61850_FLOAT64)
                         {
-                            B[i] = 0.95f * DBL_MAX; Br[i] = 0.05f;
+                            if isnan(B[i]) { B[i] = 0.95f * DBL_MAX; Br[i] = 0.05f;}
+
                             if (log_modeling) printf(" [IEC61850_FLOAT64]");
                             dA_VAL = dP;
                         }
                         
-                        //printf("  %s . %s /value /%d\n", dA->name, dP->name, dP->type);
-                        
-                        // Data point customization
-                        if (false && dP->sAddr == 123)
-                        {
-                            A[i] = sim(1000000.0f,0.2f) ; Ar[i] = 0.5f;  //  1hPa ± 20% randomness 5%
-                            B[i] = sim( 100000.0f,0.1f);  Br[i] = 0.05f; // 10kPa ± 10% randomness 5%
-                            C[i] = sim(1,0.5); Cr[i] = 0.01f;            // time ± 50% randomness 1%
-                            D[i] = sim(M_PI, 0.25); Dr[i] = 0.01f;       // phase PI ± PI/4 randomness 1%
-                        }
+                        if isnan(A[i]) { A[i] = 0.0f; Ar[i] = 0.01f; }
+                        if isnan(B[i]) { B[i] = 1.0f; Br[i] = 0.01f; }
+                        if isnan(C[i]) { C[i] = sim(1,0.8); Cr[i] = 0.01f; }          // time 0.2..1.8 randomness 1%
+                        if isnan(D[i]) { D[i] = sim(M_PI, 1.0); Dr[i] = 0.1f; }       // phase 0..2*PI randomness 10%
 
-                        // 'fix' for randomness big numbers normalization
-                        A[i] = sim(A[i]*0.5f, 1.0f);      // 0-max 
-                        B[i] = sim(B[i]*0.01f, 1.0f);
-                        C[i] = sim(1,0.8); Cr[i] = 0.01f;            // time 0.2..1.8 randomness 1%
-                        D[i] = sim(M_PI, 1.0); Dr[i] = 0.1f;       // phase 0..2*PI randomness 10%
-
-                        if (log_modeling) printf(" A:%f  B:%f  C:%f  D:%f", A[i], B[i], C[i], D[i]);
+                        if (log_modeling) printf("   A: %f ± %0.0f%%   B: %f ± %0.0f%%   C: %f ± %0.0f%%   D: %f ± %0.0f%%", A[i], 100*Ar[i], B[i], 100*Br[i], C[i], 100*Cr[i], D[i], 100*Dr[i] );
                     }
                                        
                     if (log_modeling) printf("\n");
@@ -376,6 +515,8 @@ int main(int argc, char** argv)
     }
     printf("Done!\n\n");
     
+    saveCoefficients();
+
     // runtime
     printf("Starting simulation...\n");
 
