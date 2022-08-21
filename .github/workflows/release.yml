@@ -2,7 +2,8 @@ name: Fuzzy IEC61850 Simulator
 
 on:
   push:
-    branches: [ master ]
+    tags:
+    - '*'
 
 jobs:
 
@@ -37,7 +38,9 @@ jobs:
     
     - name: Tag docker images
       run: |
+       docker tag 61850-sim:$GITHUB_RUN_NUMBER stinging/61850-sim
        docker tag 61850-sim:$GITHUB_RUN_NUMBER stinging/61850-sim:$VERSION
+       docker tag 61850-sim:$GITHUB_RUN_NUMBER harbor.sting.dev/library/61850-sim
        docker tag 61850-sim:$GITHUB_RUN_NUMBER harbor.sting.dev/library/61850-sim:$VERSION
    
     - name: Login to DockerHub
@@ -48,6 +51,7 @@ jobs:
 
     - name: Push docker images to DockerHub
       run: |
+       docker push stinging/61850-sim
        docker push stinging/61850-sim:$VERSION
 
     # TBD push to harbor.sting.dev
@@ -60,5 +64,6 @@ jobs:
 
     - name: Push docker images to StingHarbor
       run: |
+       docker push harbor.sting.dev/library/61850-sim
        docker push harbor.sting.dev/library/61850-sim:$VERSION
 
