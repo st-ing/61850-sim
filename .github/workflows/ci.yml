@@ -17,7 +17,7 @@ jobs:
     steps:
     
     - name: Informing
-    - run: echo "Trigger '${{ github.event_name }}', branch '${{ github.ref }}'"
+      run: echo "Trigger '${{ github.event_name }}', branch '${{ github.ref }}'"
 
     - name: Set version
       if: endsWith(github.ref, '/master')
