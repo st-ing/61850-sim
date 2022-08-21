@@ -57,6 +57,7 @@ jobs:
     - name: Login to StingHarbor
       uses: docker/login-action@v1
       with:
+        registry: harbor.sting.dev
         username: ${{ secrets.STINGHARBOR_USERNAME }}
         password: ${{ secrets.STINGHARBOR_PASSWORD }}
 
