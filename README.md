@@ -1,5 +1,8 @@
 # Fuzzy IEC61850 Simulator
 
+[![Fuzzy IEC61850 Simulator](https://github.com/st-ing/61850-sim/actions/workflows/ci.yml/badge.svg)](https://github.com/st-ing/61850-sim/actions/workflows/ci.yml)
+
+
 This simulator is a helpful tool that can be used for testing of various [IED](https://en.wikipedia.org/wiki/Intelligent_electronic_device) integration scenarios.
 It supports [IEC61850](https://en.wikipedia.org/wiki/IEC_61850) based communication and acts as a [MMS](https://en.wikipedia.org/wiki/Manufacturing_Message_Specification#MMS_stack_over_TCP/IP) server.
 
@@ -20,7 +23,7 @@ Some of the features that are currently implemented (and some that are 'work in 
 * configurable logging granularity 
 * fuzzification/defuzzification 🚧
 * TLS support 🚧
-* authentication 🚧
+* authentication (password)
 * authorization 🚧
 
 ## Simulation
@@ -39,9 +42,9 @@ The simulation (docker) image is automaticaly build and published to (docker) re
 docker pull stinging/61850-sim
 ```
 
-Backup/mirror repository is available under `harbor.st-ing.net/library/61850-sim` and you get it simply by:
+Backup/mirror repository is available under `harbor.sting.dev/library/61850-sim` and you get it simply by:
 ```
-docker pull harbor.st-ing.net/library/61850-sim
+docker pull harbor.sting.dev/library/61850-sim
 ```
 
 ##  ... or build it
@@ -62,6 +65,8 @@ The behaviour of the simulator can be configured using environmental variables. 
 | `IEC_61850_EDITION`        | Edition of IEC61850 (1.0, 2.0, 2.1) /respectivly 0, 1, 2/| _1_ |
 | `MAX_MMS_CONNECTIONS`        | Maximum number of MMS client connections | _10_ |
 | `MAX_DATA_POINTS`             | Modeling logging enabled              | _10000_ |
+|_security_||
+| `AUTH_PASSWORD`        | Authentication password |  |
 |_logging_||
 | `LOG_MODELING`             | Modeling logging enabled              | _false_ |
 | `LOG_SIMULATION`           | Simulation logging enabled            | _false_ |
@@ -134,13 +139,14 @@ docker run -it --rm \
 
 **Schneider Electric PowerLogic ION7550**
 
-*(port 1000, frequency 1kHz / 1ms, coefficient configuration)*
+*(port 1000, frequency 1kHz / 1ms, authentication with password 'abcd123', coefficient configuration)*
 
 ```
 docker run -it --rm \
     -p 1000:102 \
     -e SIMULATION_FREQUENCY=1000 \
     -e LOG_MODELING=true \
+    -e AUTH_PASSWORD=abc123 \
     -v $(pwd)/res/ION.icd:/model.cid \
     -v $(pwd)/res/ION.config.xml:/config.xml:ro \
     stinging/61850-sim
@@ -184,7 +190,7 @@ docker run -it --rm \
 
 - Schneider Electric PowerLogic PM8000 
   
-  **server** fuzzy-61850-sim.sting.dev 
+  **server** fuzzy-61850-sim.sting.dev
   
   **port** 1001
 
@@ -192,11 +198,13 @@ docker run -it --rm \
 
 - Schneider Electric PowerLogic ION7550
 
-  **server** fuzzy-61850-sim.sting.dev 
+  **server** fuzzy-61850-sim.sting.dev
   
   **port** 1002
 
-  (*docker run -d --name=61850-sim-1002 --restart=unless-stopped -p 1002:102 -e SIMULATION_FREQUENCY=5 -v ~/61850-sim-res/ION.icd:/model.cid:ro stinging/61850-sim:1.0*)
+  **password** Kr0j@c
+
+  (*docker run -d --name=61850-sim-1002 --restart=unless-stopped -p 1002:102 -e AUTH_PASSWORD=Kr0j@c -e SIMULATION_FREQUENCY=5 -v ~/61850-sim-res/ION.icd:/model.cid:ro stinging/61850-sim:1.0*)
 
 ## Third-party components
 This code base uses **libIEC61850** library. More documentation can be found online at http://libiec61850.com.

@@ -14,23 +14,21 @@
 
 extern IedModel iedModel;
 
-#ifndef MAX_DATA_POINTS
-    #define MAX_DATA_POINTS 10000
-#endif
-
 #ifndef REPORT_BUFFER_SIZE
     #define REPORT_BUFFER_SIZE 200000
-#endif
-
-#ifndef MAX_MMS_CONNECTIONS
-    #define MAX_MMS_CONNECTIONS 10
 #endif
 
 #ifndef IEC_61850_EDITION
     #define IEC_61850_EDITION IEC_61850_EDITION_2
 #endif
 
+#ifndef MAX_MMS_CONNECTIONS
+    #define MAX_MMS_CONNECTIONS 10
+#endif
 
+#ifndef MAX_DATA_POINTS
+    #define MAX_DATA_POINTS 10000
+#endif
   
 uint16_t dataPointsCount = MAX_DATA_POINTS;
 DataAttribute* dataPointsValues[MAX_DATA_POINTS];
@@ -48,25 +46,71 @@ static IedServer iedServer = NULL;
 static uint64_t writeCounter = 0;
 static uint64_t readCounter = 0;
 
-void
-sigint_handler(int signalId)
+char* auth_password = NULL;
+
+void sigint_handler(int signalId)
 {
     running = 0;
 }
 
-static void
-connectionHandler (IedServer self, ClientConnection connection, bool connected, void* parameter)
+static void connectionHandler(IedServer self, ClientConnection connection, bool connected, void* parameter)
 {
+    char* clientAddress = ClientConnection_getPeerAddress(connection);
+    int openConnections = IedServer_getNumberOfOpenConnections(self);
+
     if (connected)
     {
-        printf("Connection opened - Total connections %d\n",IedServer_getNumberOfOpenConnections(self));
+        printf("Connection opened from %s - Total connections %d\n", clientAddress, openConnections);
     }
     else
-        printf("Connection closed - Total connections %d\n",IedServer_getNumberOfOpenConnections(self));
+        printf("Connection closed from %s - Total connections %d\n", clientAddress, openConnections);
 }
 
-static MmsDataAccessError
-readAccessHandler(LogicalDevice* ld, LogicalNode* ln, DataObject* dataObject, FunctionalConstraint fc, ClientConnection connection, void* parameter)
+
+static bool clientAuthenticator(void* parameter, AcseAuthenticationParameter authParameter, void** securityToken)
+{
+    printf("Authenticating...\n");
+    switch (authParameter->mechanism)
+    {
+        case ACSE_AUTH_NONE:
+            printf("...using neither ACSE nor TLS authentication\n");
+
+        break;
+
+        case ACSE_AUTH_PASSWORD:
+            printf("...using ACSE password for client authentication\n");
+            if (authParameter->value.password.passwordLength == (int)strlen(auth_password)) 
+            {
+                if (memcmp(authParameter->value.password.octetString, auth_password, authParameter->value.password.passwordLength) == 0)
+                {
+                    *securityToken = (void*) auth_password;
+                    printf("...authenticated.\n");
+                    return true;
+                }
+            }
+            printf("...wrong password\n");
+        break;
+
+        case ACSE_AUTH_CERTIFICATE:
+            printf("...ACSE certificate for client authentication - NOT SUPPERTED YET\n");
+        break;
+
+        case ACSE_AUTH_TLS:
+            printf("...using TLS certificate for client authentication - NOT SUPPERTED YET\n");
+
+        break;
+    
+        default:
+            printf("...using unknown method for client authentication\n");
+        break;
+    }
+
+    // not authenticated
+    printf("...authentication failed.\n");
+	return false;
+}
+
+static MmsDataAccessError readAccessHandler(LogicalDevice* ld, LogicalNode* ln, DataObject* dataObject, FunctionalConstraint fc, ClientConnection connection, void* parameter)
 {
     readCounter++;
     return DATA_ACCESS_ERROR_SUCCESS;
@@ -227,6 +271,8 @@ int main(int argc, char** argv)
 
     int mms_port = (getenv("MMS_PORT") == NULL) ? 102 : atoi(getenv("MMS_PORT"));
 
+    auth_password = (getenv("AUTH_PASSWORD") == NULL) ? NULL : getenv("AUTH_PASSWORD");
+
     bool log_modeling = (getenv("LOG_MODELING") != NULL) && (strcmp(getenv("LOG_MODELING"), "true") == 0);
     bool log_simulation = (getenv("LOG_SIMULATION") != NULL) && (strcmp(getenv("LOG_SIMULATION"), "true") == 0);
     int simulation_frequency = (getenv("SIMULATION_FREQUENCY") == NULL) ? 1 : atoi(getenv("SIMULATION_FREQUENCY"));    
@@ -239,16 +285,20 @@ int main(int argc, char** argv)
     if (argc > 2)
         mms_port = atoi(argv[2]);
 
+    if (argc > 3)
+        auth_password = argv[3];
+
     printf("Fuzzy IEC61850 Simulation server\n");
 
-    printf("   libIEC61850 version  : %s\n", LibIEC61850_getVersionString());
-    printf("   Port                 : %d\n", mms_port);
-    printf("   Maximum connections  : %d\n", MAX_MMS_CONNECTIONS);
-    printf("   IED Name             : %s\n", ied_name);
-    printf("   Modeling log         : %s\n", log_modeling?"true":"false");
-    printf("   Simulation log       : %s\n", log_simulation?"true":"false");
-    printf("   Simulation frequancy : %d Hz\n", simulation_frequency);
-    printf("   Diagnostics interval : %d min\n", log_diagnostics_interval );
+    printf("   libIEC61850 version       : %s\n", LibIEC61850_getVersionString());
+    printf("   IED Name                  : %s\n", ied_name);
+    printf("   Port                      : %d\n", mms_port);
+    printf("   Maximum connections       : %d\n", MAX_MMS_CONNECTIONS);
+    printf("   Authentication (password) : %s\n", (auth_password==NULL)?"/":auth_password);
+    printf("   Modeling log              : %s\n", log_modeling?"true":"false");
+    printf("   Simulation log            : %s\n", log_simulation?"true":"false");
+    printf("   Simulation frequancy      : %d Hz\n", simulation_frequency);
+    printf("   Diagnostics interval      : %d min\n", log_diagnostics_interval );
 
     printf("\n");
 
@@ -268,6 +318,18 @@ int main(int argc, char** argv)
     IedServerConfig_destroy(config);
     IedServer_setServerIdentity(iedServer, "sting GmbH", "Fuzzy IEC61850 Simulator", "1.1");
     
+    // Authentication
+    if (auth_password != NULL)
+        IedServer_setAuthenticator(iedServer, clientAuthenticator, NULL);
+
+        /*
+        AcseAuthenticationParameter auth = calloc(1, sizeof(struct sAcseAuthenticationParameter));
+        auth->mechanism = ACSE_AUTH_PASSWORD;
+        auth->value.password.octetString = "testpw";
+        
+        IsoServer_setAuthenticationParameter(iedServer, auth);        
+        */
+
     // Tracking connections
     IedServer_setConnectionIndicationHandler(iedServer, (IedConnectionIndicationHandler) connectionHandler, NULL);
 
@@ -636,5 +698,4 @@ int main(int argc, char** argv)
 
     // cleanup / free resources
     IedServer_destroy(iedServer);
-
 }

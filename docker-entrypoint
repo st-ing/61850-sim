@@ -10,6 +10,17 @@ if [ -z "$MMS_PORT" ]; then
     export MMS_PORT=102
 fi
 
+if [ -z "$IEC_61850_EDITION" ]; then
+    export IEC_61850_EDITION=1
+fi
+
+if [ -z "$MAX_MMS_CONNECTIONS" ]; then
+    export MAX_MMS_CONNECTIONS=10
+fi
+
+if [ -z "$MAX_DATA_POINTS" ]; then
+    export MAX_DATA_POINTS=10000
+fi
 
 cd /opt
 
@@ -17,7 +28,7 @@ echo "Compiling IED model..."
 java -jar tools/model-generator/genmodel.jar ../model.cid -out src/static_model
 
 echo "Compiling simulation..."
-cc -pthread -I./include -I/usr/include/libxml2/ -L./lib -L/usr/lib -DMAX_MMS_CONNECTIONS=4 -o 61850-sim ./src/61850-sim.c ./src/static_model.c -liec61850 -lxml2 -lm
+cc -pthread -I./include -I/usr/include/libxml2/ -L./lib -L/usr/lib -DIEC_61850_EDITION=$IEC_61850_EDITION -DMAX_MMS_CONNECTIONS=$MAX_MMS_CONNECTIONS -DMAX_DATA_POINTS=$MAX_DATA_POINTS -o 61850-sim ./src/61850-sim.c ./src/static_model.c -liec61850 -lxml2 -lm
 
 echo "Preparing simulation..."
 chmod +x /opt/61850-sim

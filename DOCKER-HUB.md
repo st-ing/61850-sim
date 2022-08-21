@@ -6,7 +6,8 @@
 
 # Supported tags and respective `Dockerfile` links
 
-- [`latest`, `1.1`](https://github.com/st-ing/61850-sim/blob/1.1/Dockerfile)
+- [`1.2`, `latest`](https://github.com/st-ing/61850-sim/blob/1.2/Dockerfile)
+- [`1.1`](https://github.com/st-ing/61850-sim/blob/1.1/Dockerfile)
 - [`1.0`](https://github.com/st-ing/61850-sim/blob/1.0/Dockerfile)
 
 # What is Fuzzy IEC61850 Simulator?
@@ -50,6 +51,8 @@ The behaviour of the simulator can be configured using environmental variables. 
 | `IEC_61850_EDITION`        | Edition of IEC61850 (1.0, 2.0, 2.1) /respectivly 0, 1, 2/| _1_ |
 | `MAX_MMS_CONNECTIONS`        | Maximum number of MMS client connections | _10_ |
 | `MAX_DATA_POINTS`             | Modeling logging enabled              | _10000_ |
+|_security_||
+| `AUTH_PASSWORD`        | Authentication password |  |
 |_logging_||
 | `LOG_MODELING`             | Modeling logging enabled              | _false_ |
 | `LOG_SIMULATION`           | Simulation logging enabled            | _false_ |
@@ -111,13 +114,14 @@ docker run -it --rm \
 
 **Schneider Electric PowerLogic ION7550**
 
-*(port 1000, frequency 1kHz / 1ms, coefficient configuration)*
+*(port 1000, frequency 1kHz / 1ms, authentication with password 'abcd123', coefficient configuration)*
 
 ```
 docker run -it --rm \
     -p 1000:102 \
     -e SIMULATION_FREQUENCY=1000 \
     -e LOG_MODELING=true \
+    -e AUTH_PASSWORD=abc123 \
     -v $(pwd)/res/ION.icd:/model.cid \
     -v $(pwd)/res/ION.config.xml:/config.xml:ro \
     stinging/61850-sim

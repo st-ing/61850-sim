@@ -1,4 +1,4 @@
-name: CI
+name: Fuzzy IEC61850 Simulator
 
 on:
   push:
@@ -12,12 +12,26 @@ jobs:
     name: Build and push docker images
 
     env:
-      VERSION: "1.1"
+      VERSION: "1.2"
 
     steps:
+    
+    - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+    - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+    - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."    
+
+    - name: Set version
+      if: endsWith(github.ref, '/master')
+      run: |
+        echo "VERSION=dev" >> $GITHUB_ENV
+
     - name: Checking out repository
       uses: actions/checkout@v2
-    
+
+    - name: Get version
+      run: |
+       echo $VERSION
+
     - name: Build docker image
       run: |
        docker build --pull --build-arg VERSION=$VERSION --build-arg BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ') --build-arg BUILD_NUMBER=$GITHUB_RUN_NUMBER --tag 61850-sim:$GITHUB_RUN_NUMBER .
@@ -26,8 +40,8 @@ jobs:
       run: |
        docker tag 61850-sim:$GITHUB_RUN_NUMBER stinging/61850-sim
        docker tag 61850-sim:$GITHUB_RUN_NUMBER stinging/61850-sim:$VERSION
-       docker tag 61850-sim:$GITHUB_RUN_NUMBER harbor.st-ing.net/library/61850-sim
-       docker tag 61850-sim:$GITHUB_RUN_NUMBER harbor.st-ing.net/library/61850-sim:$VERSION
+       docker tag 61850-sim:$GITHUB_RUN_NUMBER harbor.sting.dev/library/61850-sim
+       docker tag 61850-sim:$GITHUB_RUN_NUMBER harbor.sting.dev/library/61850-sim:$VERSION
    
     - name: Login to DockerHub
       uses: docker/login-action@v1
@@ -40,4 +54,15 @@ jobs:
        docker push stinging/61850-sim
        docker push stinging/61850-sim:$VERSION
 
-    # TBD push to harbor.st-ing.net
+    # TBD push to harbor.sting.dev
+    - name: Login to StingHarbor
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.STINGHARBOR_USERNAME }}
+        password: ${{ secrets.STINGHARBOR_PASSWORD }}
+
+    - name: Push docker images to StingHarbor
+      run: |
+       docker push harbor.sting.dev/library/61850-sim
+       docker push harbor.sting.dev/library/61850-sim:$VERSION
+
