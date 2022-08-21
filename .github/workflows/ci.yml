@@ -1,4 +1,4 @@
-name: Fuzzy IEC61850 Simulator
+name: CI
 
 on:
   push:
@@ -12,24 +12,15 @@ jobs:
     name: Build and push docker images
 
     env:
-      VERSION: "1.2"
+      VERSION: "dev"
 
     steps:
     
     - name: Informing
       run: echo "Trigger '${{ github.event_name }}', branch '${{ github.ref }}', named '${{ github.ref_name }}'"
 
-    - name: Set version
-      if: endsWith(github.ref, '/master')
-      run: |
-        echo "VERSION=dev" >> $GITHUB_ENV
-
     - name: Checking out repository
       uses: actions/checkout@v2
-
-    - name: Get version
-      run: |
-       echo $VERSION
 
     - name: Build docker image
       run: |
@@ -50,7 +41,6 @@ jobs:
       run: |
        docker push stinging/61850-sim:$VERSION
 
-    # TBD push to harbor.sting.dev
     - name: Login to StingHarbor
       uses: docker/login-action@v1
       with:
